@@ -1,61 +1,54 @@
 package models;
 
 
-public class Somministrazione {
-	private String nomeFarmaco;
-	private Integer quantitaDosi;
-	private String todayDate;
-	private String nomeInfermiere;
+public class Subministration {
+	private String medId;
+	private Integer doseQuantity;
+	private String subDate;
+	private String nurseName;
 	
-	public Somministrazione(String nomeFarmaco, Integer quantitaDosi, String string, String nomeInfermiere) {
-		this.nomeFarmaco = nomeFarmaco;
-		this.quantitaDosi = quantitaDosi;
-		this.todayDate = string;
-		this.nomeInfermiere = nomeInfermiere;
+	public Subministration(String medId, Integer doseQuantity, String string, String nurseName) {
+		this.medId = medId;
+		this.doseQuantity = doseQuantity;
+		this.subDate = string;
+		this.nurseName = nurseName;
 	}
 
-	
+	public String getMedId() {
+		return medId;
+	}
+
+	public void setMedId(String medId) {
+		this.medId = medId;
+	}
+
+	public Integer getDoseQuantity() {
+		return doseQuantity;
+	}
+
+	public void setDoseQuantity(Integer doseQuantity) {
+		this.doseQuantity = doseQuantity;
+	}
+
+	public String getTodayDate() {
+		return subDate;
+	}
+
+	public void setTodayDate(String subDate) {
+		this.subDate = subDate;
+	}
+
+	public String getNurseName() {
+		return nurseName;
+	}
+
+	public void setNurseName(String nurseName) {
+		this.nurseName = nurseName;
+	}
 	
 	@Override
 	public String toString() {
-		return "\n\t\t\tNome Farmaco: " + nomeFarmaco + "\tQuantita dosi(mg): " + quantitaDosi + "\tData e ora: " + todayDate + "\tNome Infermiere: " + nomeInfermiere;
+		return "\n\t\\tNome Farmaco utilizzato: " + medId + "\tQuantita dosi(in mg): " + doseQuantity + "\tData e ora: " + subDate + "\tNome Infermiere: " + nurseName;
 	}
-
-
-
-	public String getNomeFarmaco() {
-		return nomeFarmaco;
-	}
-
-	public void setNomeFarmaco(String nomeFarmaco) {
-		this.nomeFarmaco = nomeFarmaco;
-	}
-
-	public Integer getQuantitaDosi() {
-		return quantitaDosi;
-	}
-
-	public void setQuantitaDosi(Integer quantitaDosi) {
-		this.quantitaDosi = quantitaDosi;
-	}
-	
-	
-
-	public String getTodayDate() {
-		return todayDate;
-	}
-
-	public void setTodayDate(String todayDate) {
-		this.todayDate = todayDate;
-	}
-
-	public String getNomeInfermiere() {
-		return nomeInfermiere;
-	}
-
-	public void setNomeInfermiere(String nomeInfermiere) {
-		this.nomeInfermiere = nomeInfermiere;
-	}
-	
 	
 }

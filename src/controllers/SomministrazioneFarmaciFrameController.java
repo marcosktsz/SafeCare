@@ -3,11 +3,11 @@ package controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import models.Farmaco;
+import models.Medicine;
 import models.Model;
 import models.Paziente;
-import models.Prescrizione;
-import models.Somministrazione;
+import models.Prescription;
+import models.Subministration;
 import view.MainFrame;
 import view.SomministrazioneFarmaciFrame;
 
@@ -24,9 +24,9 @@ public class SomministrazioneFarmaciFrameController {
 		
 		
 		//{{ TABELLA PRESCRIZIONI
-		Prescrizione lastPrescrizione = theModel.getListaPrescrizioni().get(theModel.getListaPrescrizioni().size() - 1);
+		Prescription lastPrescrizione = theModel.getListaPrescrizioni().get(theModel.getListaPrescrizioni().size() - 1);
 		theView.getTxtDataPrescrizione().setText(lastPrescrizione.getDataPrescrizione());
-			for (Farmaco farmaco : lastPrescrizione.getPrescrizioneMedica()) {	
+			for (Medicine farmaco : lastPrescrizione.getPrescrizioneMedica()) {	
 				String[] tmpPrescrizione = {farmaco.getNomeFarmaco(), farmaco.getDurataTerapia().toString(), farmaco.getNrDosiGiornaliere().toString(), farmaco.getQuantitaDiFarmacoPerDose().toString()};
 				String[] tmpSomministrazione = {farmaco.getNomeFarmaco(), "", theView.getDateFormat().format(theView.getTodayDate()), mainFrame.getLblNomePersonale().getText()};
 				theView.getTableModelPrescrizione().addRow(tmpPrescrizione);
@@ -48,8 +48,8 @@ public class SomministrazioneFarmaciFrameController {
 			
 		//{{ TABELLA SOMMINISTRAZIONI
 		theModel.readSomministrazioniFromFile(mainFrame.getList().getSelectedValue().toString());
-		for (Somministrazione somministrazione : theModel.getListaSomministrazioni()) {
-			String[] tmpSomministrazione = {somministrazione.getNomeFarmaco(), somministrazione.getQuantitaDosi().toString(), somministrazione.getTodayDate(), somministrazione.getNomeInfermiere()};
+		for (Subministration somministrazione : theModel.getListaSomministrazioni()) {
+			String[] tmpSomministrazione = {somministrazione.getMedId(), somministrazione.getDoseQuantity().toString(), somministrazione.getTodayDate(), somministrazione.getNurseName()};
 			theView.getTableModelSomministrazione().addRow(tmpSomministrazione);
 		}			
 		//}}
@@ -71,7 +71,7 @@ public class SomministrazioneFarmaciFrameController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			ArrayList<Somministrazione> listaSomministrazioniTmp = new ArrayList<>();
+			ArrayList<Subministration> listaSomministrazioniTmp = new ArrayList<>();
 			theModel.readSomministrazioniFromFile(mainFrame.getList().getSelectedValue().toString());
 			int rowBlock = 0;
 			
@@ -82,7 +82,7 @@ public class SomministrazioneFarmaciFrameController {
 					rowBlock = i + 1;
 					break;
 				} else {
-					Somministrazione somministrazioneTmp = new Somministrazione(theView.getTableModelSomministrazione().getValueAt(i, j).toString(), 
+					Subministration somministrazioneTmp = new Subministration(theView.getTableModelSomministrazione().getValueAt(i, j).toString(), 
 							Integer.parseInt(theView.getTableModelSomministrazione().getValueAt(i, j+1).toString()), 
 							theView.getTableModelSomministrazione().getValueAt(i, j+2).toString(), 
 							theView.getTabellaFarmaciSomministrazione().getValueAt(i, j+3).toString());
@@ -99,7 +99,7 @@ public class SomministrazioneFarmaciFrameController {
 				
 				if(theView.getTableModelSomministrazione().getValueAt(i, j).toString().equals(new String(""))) {					
 				} else {
-					Somministrazione somministrazioneTmp = new Somministrazione(theView.getTableModelSomministrazione().getValueAt(i, j).toString(), 
+					Subministration somministrazioneTmp = new Subministration(theView.getTableModelSomministrazione().getValueAt(i, j).toString(), 
 							Integer.parseInt(theView.getTableModelSomministrazione().getValueAt(i, j+1).toString()), 
 							theView.getTableModelSomministrazione().getValueAt(i, j+2).toString(), 
 							theView.getTabellaFarmaciSomministrazione().getValueAt(i, j+3).toString());

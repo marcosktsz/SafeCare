@@ -2,11 +2,11 @@ package models;
 
 import java.util.ArrayList;
 
-public class Prescrizione {
-	private ArrayList<Farmaco> prescrizioneMedica;
+public class Prescription {
+	private ArrayList<Medicine> prescrizioneMedica;
 	private String dataPrescrizione;
 	
-	public Prescrizione(ArrayList<Farmaco> prescrizioneMedica, String dataPrescrizione) {
+	public Prescription(ArrayList<Medicine> prescrizioneMedica, String dataPrescrizione) {
 		this.prescrizioneMedica = prescrizioneMedica;
 		this.dataPrescrizione = dataPrescrizione;
 	}
@@ -21,11 +21,11 @@ public class Prescrizione {
 
 
 	//{{ Getters and Setters
-	public ArrayList<Farmaco> getPrescrizioneMedica() {
+	public ArrayList<Medicine> getPrescrizioneMedica() {
 		return prescrizioneMedica;
 	}
 
-	public void setPrescrizioneMedica(ArrayList<Farmaco> prescrizioneMedica) {
+	public void setPrescrizioneMedica(ArrayList<Medicine> prescrizioneMedica) {
 		this.prescrizioneMedica = prescrizioneMedica;
 	}
 

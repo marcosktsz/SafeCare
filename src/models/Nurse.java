@@ -1,10 +1,9 @@
 package models;
 
-public class Infermiere extends Personale {
+public class Nurse extends Workers {
 
-	public Infermiere(String nome, String cognome, String codiceDiIdentificazione, User autentificazione) {
-		super(nome, cognome, codiceDiIdentificazione, autentificazione);
-		// TODO Auto-generated constructor stub
+	public Nurse(String name, String lastName, String id, User auth) {
+		super(name, lastName, id, auth);
 	}
 	
 }

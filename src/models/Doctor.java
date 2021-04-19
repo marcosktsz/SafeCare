@@ -1,8 +1,8 @@
 package models;
 
-public class Medico extends Personale {
+public class Doctor extends Workers {
 
-	public Medico(String nome, String cognome, String codiceDiIdentificazione, User autentificazione) {
-		super(nome, cognome, codiceDiIdentificazione, autentificazione);
+	public Doctor(String name, String lastName, String id, User auth) {
+		super(name, lastName, id, auth);
 	}
 }

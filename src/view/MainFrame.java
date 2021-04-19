@@ -42,8 +42,8 @@ public class MainFrame extends JFrame {
 	BorderLayout mainLayout = new BorderLayout(15, 15);
 	private static String titolo = "Hospital";
 	Container frmContentPaneContainer = new Container();
-	private Font fontBottoni = new Font("Arial", Font.BOLD, 16);
-	private Font fontTesto = new Font("Arial", Font.PLAIN, 16);
+	private Font fontBottoni = new Font("Google Sans", Font.PLAIN, 16);
+	private Font fontTesto = new Font("Google Sans", Font.PLAIN, 16);
 	private String nomeBottonePremuto;
 	private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 	private Date todayDate = new Date();
@@ -53,7 +53,7 @@ public class MainFrame extends JFrame {
 	private ImageIcon imageIcon = new ImageIcon(new ImageIcon("assets//logo.png").getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT));
 	private JLabel imgJLabel;
 	private JLabel infoLbl;
-	private JLabel lblBenvenuto;
+	//private JLabel lblBenvenuto;
 	private JLabel lblProfessione;
 	private JLabel lblNomePersonale;
 	//}}
@@ -262,7 +262,7 @@ public class MainFrame extends JFrame {
 		//{{ PANNELLO LOGO
 		pannelloLogo.setPreferredSize(new Dimension(1080, 85)); //85
 		infoLbl = new JLabel("Hospital");
-		infoLbl.setFont(new Font("Arial", Font.BOLD, 50));
+		infoLbl.setFont(new Font("Google Sans", Font.BOLD, 50));
 		// = new JSeparator(SwingConstants.VERTICAL);
 		imgJLabel = new JLabel(imageIcon);
 		imgJLabel.setIcon(imageIcon);
@@ -271,9 +271,9 @@ public class MainFrame extends JFrame {
 		
 		
 		
-		lblBenvenuto = new JLabel("Benvenuto");
-		lblBenvenuto.setFont(new Font("Arial", Font.BOLD, 20));
-		pannelloLogo.add(lblBenvenuto);
+		//lblBenvenuto = new JLabel("Benvenuto");
+		//lblBenvenuto.setFont(new Font("Google Sans", Font.BOLD, 20));
+		//pannelloLogo.add(lblBenvenuto);
 		
 		lblProfessione = new JLabel();
 		lblProfessione.setFont(new Font("Arial", Font.BOLD, 20));
@@ -377,7 +377,7 @@ public class MainFrame extends JFrame {
 		txtCognome.setEditable(false);
 		pannelloDati.add(txtCognome, gbcDati);
 		
-		lblLuogoDiNascita = new JLabel("Luogo di nascità:");
+		lblLuogoDiNascita = new JLabel("Luogo di nascitï¿½:");
 		lblLuogoDiNascita.setFont(fontBottoni);
 		gbcDati.gridx = 0;
 		gbcDati.gridy = 3;
@@ -391,7 +391,7 @@ public class MainFrame extends JFrame {
 		pannelloDati.add(txtLuogoDiNascita, gbcDati);
 		
 		
-		lblDataDiNascita = new JLabel("Data di nascità:");
+		lblDataDiNascita = new JLabel("Data di nascitï¿½:");
 		lblDataDiNascita.setFont(fontBottoni);
 		gbcDati.gridx = 0;
 		gbcDati.gridy = 4;

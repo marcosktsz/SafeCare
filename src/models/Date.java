@@ -1,13 +1,11 @@
 package models;
 
 public class Date {
-	// incapsulazione: i campi di Date sono gestiti solo da Date
 	private int day;
 	private int month;
 	private int year;
 
-	// costante di classe
-	private final static String[] mesi =
+	private final static String[] months =
 		{ "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
 			"Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"}; 
 
@@ -15,63 +13,15 @@ public class Date {
 			31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
 	};
 
-	// costruttore
 	public Date(final int day, final int month, final int year) {
 		this.day = day;
 		this.month = month;
 		this.year = year;
-		//this.checkIfLegal();
 	}
 
-	public String toString() {
-			return day + "/" + month + "/" + year;
-	}
-
-	public boolean equals(Date other) {
-		return day == other.day &&
-				month == other.month &&
-				year == other.year;
-	}
-
-	/*public int compareTo(Date other) {
-	if (this.year < other.year)
-	    return -1;
-	else if (this.year > other.year)
-	    return 1;
-	else if (this.month < other.month)
-	    return -1;
-	else if (this.month > other.month)
-	    return 1;
-	else if (this.day < other.day)
-	    return -1;
-	else if (this.day > other.day)
-	    return 1;
-	else
-	    return 0;
-	    }*/
-
-	public int compareTo(Date other) {
-		int diff = year - other.year;
-		if (diff != 0)
-			return diff;
-
-		diff = month - other.month;
-		if (diff != 0)
-			return diff;
-
-		return day - other.day;
-	}
 
 	public boolean checkIfLegal() {
-		boolean validation = false;
-		
-		if(month < 1 || month > 12 || day < 1 || day > numberOfDaysInMonth()) {
-			validation = false;
-		} else {
-			validation = true;
-		}
-		
-		return validation;
+		return(month >= 1 && month <= 12 && day >= 1 && day <= numberOfDaysInMonth());
 	}
 	
 	private int numberOfDaysInMonth() {
@@ -116,6 +66,29 @@ public class Date {
 			(year % 100 != 0 || year % 400 == 0);
 	}
 
+	public String toString() {
+			//return day + "/" + month + "/" + year;
+			return day + " " + month + " " + year;
+	}
+
+	public boolean equals(Date other) {
+		return day == other.day &&
+				month == other.month &&
+				year == other.year;
+	}
+
+	public int compareTo(Date other) {
+		int diff = year - other.year;
+		if (diff != 0)
+			return diff;
+
+		diff = month - other.month;
+		if (diff != 0)
+			return diff;
+
+		return day - other.day;
+	}
+
 	public int getDay() {
 		return day;
 	}
@@ -141,7 +114,7 @@ public class Date {
 	}
 
 	public static String[] getMesi() {
-		return mesi;
+		return months;
 	}
 
 	public static int[] getDaysinmonth() {

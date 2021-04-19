@@ -1,47 +1,47 @@
 package models;
 
-public abstract class Personale {
-	private String nome;
-	private String cognome;
-	private String codiceDiIdentificazione;
-	private User autentificazione;
+public abstract class Workers {
+	private String name;
+	private String lastName;
+	private String id;
+	private User auth;
 	
-	public Personale(String nome, String cognome, String codiceDiIdentificazione, User autentificazione) {
-		this.nome = nome;
-		this.cognome = cognome;
-		this.codiceDiIdentificazione = codiceDiIdentificazione;
-		this.autentificazione = autentificazione;
+	public Workers(String name, String lastName, String id, User auth) {
+		this.name = name;
+		this.lastName = lastName;
+		this.id = id;
+		this.auth = auth;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getCognome() {
-		return cognome;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setCognome(String cognome) {
-		this.cognome = cognome;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public String getCodiceDiIdentificazione() {
-		return codiceDiIdentificazione;
+	public String getId() {
+		return id;
 	}
 
-	public void setCodiceDiIdentificazione(String codiceDiIdentificazione) {
-		this.codiceDiIdentificazione = codiceDiIdentificazione;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public User getAutentificazione() {
-		return autentificazione;
+	public User getAuth() {
+		return auth;
 	}
 
-	public void setAutentificazione(User autentificazione) {
-		this.autentificazione = autentificazione;
+	public void setAuth(User auth) {
+		this.auth = auth;
 	}
 }

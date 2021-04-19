@@ -1,56 +1,83 @@
 package models;
 
-public class Farmaco {
-	private String nomeFarmaco;
-	private Integer durataTerapia;
-	private Integer nrDosiGiornaliere;
-	private Integer quantitaDiFarmacoPerDose;
+public class Medicine {
+	private String medId;
+	private Integer thSpan;
+	private Integer dailyDoseNr;
+	private Integer medDoseQuantity;
+	private Integer oxTherapy;
+	private Integer axVentilation;
 	
-	public Farmaco(String nomeFarmaco, Integer durataTerapia, Integer nrDosiGiornaliere, Integer quantitaDiFarmacoPerDose) {
-		this.nomeFarmaco = nomeFarmaco;
-		this.durataTerapia = durataTerapia;
-		this.nrDosiGiornaliere = nrDosiGiornaliere;
-		this.quantitaDiFarmacoPerDose = quantitaDiFarmacoPerDose;
+	public Medicine(String medId, Integer thSpan, Integer dailyDoseNr, Integer medDoseQuantity) {
+		this.medId = medId;
+		this.thSpan = thSpan;
+		this.dailyDoseNr = dailyDoseNr;
+		this.medDoseQuantity = medDoseQuantity;
+		this.oxTherapy = -1;
+		this.axVentilation = -1;
+	}
+
+	public Medicine(String medId, Integer thSpan, Integer dailyDoseNr, Integer medDoseQuantity, Integer oxTherapy, Integer axVentilation) {
+		this.medId = medId;
+		this.thSpan = thSpan;
+		this.dailyDoseNr = dailyDoseNr;
+		this.medDoseQuantity = medDoseQuantity;
+		this.oxTherapy = oxTherapy;
+		this.axVentilation = axVentilation;
 	}
 
 	@Override
 	public String toString() {
-		return "\n\t\t\tNome Farmaco: " + nomeFarmaco + "\tDurata Terapia(gg): " + durataTerapia + "\tDosi Giornaliere: " + nrDosiGiornaliere + "\tQuantita dosi(mg): " + quantitaDiFarmacoPerDose;
+		return "\n\t\t\tNome Farmaco: " + medId + "\tDurata Terapia(gg): " + thSpan + "\tDosi Giornaliere: " + dailyDoseNr + "\tQuantita dosi(mg): " + medDoseQuantity;
 	}
-
 
 
 	//{{ Getters and Setters
 	public String getNomeFarmaco() {
-		return nomeFarmaco;
+		return medId;
 	}
 
-	public void setNomeFarmaco(String nomeFarmaco) {
-		this.nomeFarmaco = nomeFarmaco;
+	public void setNomeFarmaco(String medId) {
+		this.medId = medId;
 	}
 
 	public Integer getDurataTerapia() {
-		return durataTerapia;
+		return thSpan;
 	}
 
-	public void setDurataTerapia(Integer durataTerapia) {
-		this.durataTerapia = durataTerapia;
+	public void setDurataTerapia(Integer thSpan) {
+		this.thSpan = thSpan;
 	}
 
 	public Integer getNrDosiGiornaliere() {
-		return nrDosiGiornaliere;
+		return dailyDoseNr;
 	}
 
-	public void setNrDosiGiornaliere(Integer nrDosiGiornaliere) {
-		this.nrDosiGiornaliere = nrDosiGiornaliere;
+	public void setNrDosiGiornaliere(Integer dailyDoseNr) {
+		this.dailyDoseNr = dailyDoseNr;
 	}
 
 	public Integer getQuantitaDiFarmacoPerDose() {
-		return quantitaDiFarmacoPerDose;
+		return medDoseQuantity;
 	}
 
-	public void setQuantitaDiFarmacoPerDose(Integer quantitaDiFarmacoPerDose) {
-		this.quantitaDiFarmacoPerDose = quantitaDiFarmacoPerDose;
+	public void setQuantitaDiFarmacoPerDose(Integer medDoseQuantity) {
+		this.medDoseQuantity = medDoseQuantity;
 	}
-	//}}
+
+	public Integer getOxTerapy() {
+		return oxTherapy;
+	}
+
+	public void setOxTerapy(Integer oxTherapy) {
+		this.oxTherapy = oxTherapy;
+	}
+
+	public Integer getaxVentilation() {
+		return axVentilation;
+	}
+
+	public void setaxVentilation(Integer axVentilation) {
+		this.axVentilation = axVentilation;
+	}
 }

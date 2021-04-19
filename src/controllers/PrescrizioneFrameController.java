@@ -3,10 +3,10 @@ package controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import models.Farmaco;
+import models.Medicine;
 import models.Model;
 import models.Paziente;
-import models.Prescrizione;
+import models.Prescription;
 import view.MainFrame;
 import view.PrescrizioneFrame;
 
@@ -24,9 +24,9 @@ public class PrescrizioneFrameController {
 			theView.getTabellaFarmaci().setEnabled(true);
 			theModel.readPrescrizioniFromFile(mainFrame.getList().getSelectedValue().toString());
 			if(!(theModel.getListaPrescrizioni().isEmpty())) {
-				Prescrizione lastPrescrizione = theModel.getListaPrescrizioni().get(theModel.getListaPrescrizioni().size() - 1);
+				Prescription lastPrescrizione = theModel.getListaPrescrizioni().get(theModel.getListaPrescrizioni().size() - 1);
 				theView.getTxtDataPrescrizione().setText(lastPrescrizione.getDataPrescrizione());
-				for (Farmaco farmaco : lastPrescrizione.getPrescrizioneMedica()) {
+				for (Medicine farmaco : lastPrescrizione.getPrescrizioneMedica()) {
 					String[] tmp = {farmaco.getNomeFarmaco(), farmaco.getDurataTerapia().toString(), farmaco.getNrDosiGiornaliere().toString(), farmaco.getQuantitaDiFarmacoPerDose().toString()};
 					theView.getTableModel().addRow(tmp);
 				}
@@ -52,9 +52,9 @@ public class PrescrizioneFrameController {
 			theView.getTabellaFarmaci().setEnabled(false);
 			theModel.readPrescrizioniFromFile(mainFrame.getList().getSelectedValue().toString());
 			if(!(theModel.getListaPrescrizioni().isEmpty())) {
-				Prescrizione lastPrescrizione = theModel.getListaPrescrizioni().get(theModel.getListaPrescrizioni().size() - 1);
+				Prescription lastPrescrizione = theModel.getListaPrescrizioni().get(theModel.getListaPrescrizioni().size() - 1);
 				theView.getTxtDataPrescrizione().setText(lastPrescrizione.getDataPrescrizione());
-				for (Farmaco farmaco : lastPrescrizione.getPrescrizioneMedica()) {
+				for (Medicine farmaco : lastPrescrizione.getPrescrizioneMedica()) {
 					String[] tmp = {farmaco.getNomeFarmaco(), farmaco.getDurataTerapia().toString(), farmaco.getNrDosiGiornaliere().toString(), farmaco.getQuantitaDiFarmacoPerDose().toString()};
 					theView.getTableModel().addRow(tmp);
 				}
@@ -111,10 +111,10 @@ public class PrescrizioneFrameController {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			ArrayList<Farmaco> listaFarmaciTmp = new ArrayList<>();
+			ArrayList<Medicine> listaFarmaciTmp = new ArrayList<>();
 			for(int i = 0; i < theView.getTableModel().getRowCount(); i++) {
 				int j = 0;
-				Farmaco farmacoTmp = new Farmaco(theView.getTableModel().getValueAt(i, j).toString(), 
+				Medicine farmacoTmp = new Medicine(theView.getTableModel().getValueAt(i, j).toString(), 
 						Integer.parseInt(theView.getTableModel().getValueAt(i, j + 1).toString()), 
 						Integer.parseInt(theView.getTableModel().getValueAt(i, j + 2).toString()), 
 						Integer.parseInt(theView.getTableModel().getValueAt(i, j + 3).toString()));
@@ -124,7 +124,7 @@ public class PrescrizioneFrameController {
 			if(!(theModel.getListaPrescrizioni().isEmpty())) {
 				theModel.readPrescrizioniFromFile(mainFrame.getList().getSelectedValue().toString());
 				boolean verifica = false;
-				for (Prescrizione prescrizione : theModel.getListaPrescrizioni()) {
+				for (Prescription prescrizione : theModel.getListaPrescrizioni()) {
 					if(prescrizione.getDataPrescrizione().equals(theView.getTxtDataPrescrizione().getText())) {
 						prescrizione.setPrescrizioneMedica(listaFarmaciTmp);
 						verifica = true;
@@ -133,7 +133,7 @@ public class PrescrizioneFrameController {
 				}
 				
 				if(verifica == false) {
-					theModel.getListaPrescrizioni().add(new Prescrizione(listaFarmaciTmp, theView.getTxtDataPrescrizione().getText()));
+					theModel.getListaPrescrizioni().add(new Prescription(listaFarmaciTmp, theView.getTxtDataPrescrizione().getText()));
 				}
 				
 				theModel.writePrescrizioniToFile(mainFrame.getList().getSelectedValue().toString(), theModel.getListaPrescrizioni());
@@ -143,7 +143,7 @@ public class PrescrizioneFrameController {
 						listaFarmaciTmp.toString(), theModel.getNewReportFile());
 				theView.dispose();
 			} else if(theModel.getListaPrescrizioni().isEmpty()){
-				theModel.getListaPrescrizioni().add(new Prescrizione(listaFarmaciTmp, theView.getTxtDataPrescrizione().getText()));
+				theModel.getListaPrescrizioni().add(new Prescription(listaFarmaciTmp, theView.getTxtDataPrescrizione().getText()));
 				theModel.writePrescrizioniToFile(mainFrame.getList().getSelectedValue().toString(), theModel.getListaPrescrizioni());
 				theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(mainFrame.getTodayDate()) + "]\tPaziente: " + mainFrame.getList().getSelectedValue().getNome() + " " + 
 						mainFrame.getList().getSelectedValue().getCognome() + "[Codice Fiscale: " + mainFrame.getList().getSelectedValue().getCodiceUnivocoSanitario() + "]\t Medico: " +

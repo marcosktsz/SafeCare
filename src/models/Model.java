@@ -21,12 +21,12 @@ public class Model {
 	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 	
 	private ArrayList<Paziente> listaPazienti;
-	private ArrayList<Infermiere> listaInfermieri;
-	private ArrayList<Medico> listaMedici;
+	private ArrayList<Nurse> listaInfermieri;
+	private ArrayList<Doctor> listaMedici;
 	private ArrayList<Primario> listaPrimari;
-	private ArrayList<Prescrizione> listaPrescrizioni;
-	private ArrayList<Somministrazione> listaSomministrazioni;
-	private ArrayList<Farmaco> listaFarmaci;
+	private ArrayList<Prescription> listaPrescrizioni;
+	private ArrayList<Subministration> listaSomministrazioni;
+	private ArrayList<Medicine> listaFarmaci;
 	private ArrayList<Observer> listaObserver = new ArrayList<Observer>();
 	private Map<Paziente, ArrayList<ParametriVitali>> listaParametriVitali = new HashMap<Paziente, ArrayList<ParametriVitali>>();
 	private Map<Paziente, ArrayList<ParametriVitaliMedia>> listaParametriVitaliMedia = new HashMap<Paziente, ArrayList<ParametriVitaliMedia>>();
@@ -50,11 +50,11 @@ public class Model {
 				file = new File("assets//filePazienti.json");
 				nomeToJson = "Pazienti";
 				break;
-			} else if(object instanceof Infermiere) {
+			} else if(object instanceof Nurse) {
 				file = new File("assets//fileInfermieri.json");
 				nomeToJson = "Infermieri";
 				break;
-			} else if(object instanceof Medico) {
+			} else if(object instanceof Doctor) {
 				file = new File("assets//fileMedici.json");
 				nomeToJson = "Medici";
 				break;
@@ -84,11 +84,11 @@ public class Model {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void writePrescrizioniToFile(String nomeFile, ArrayList<Prescrizione> src) {
+	public void writePrescrizioniToFile(String nomeFile, ArrayList<Prescription> src) {
 		try (FileWriter fileWriter = new FileWriter(new File("assets//Prescrizioni Mediche//" + nomeFile + ".json"))) {
 			org.json.JSONObject jsonObject = new org.json.JSONObject();
 			JSONArray jsonArray = new JSONArray();
-			for (Prescrizione prescrizione : src) {
+			for (Prescription prescrizione : src) {
 				jsonArray.add(prescrizione);				
 			}
 			jsonObject.put("prescrizioni", jsonArray);
@@ -99,11 +99,11 @@ public class Model {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void writeSomministrazioniToFile(String nomeFile, ArrayList<Somministrazione> src) {
+	public void writeSomministrazioniToFile(String nomeFile, ArrayList<Subministration> src) {
 		try (FileWriter fileWriter = new FileWriter(new File("assets//Somministrazioni Farmaci//" + nomeFile + ".json"))) {
 			org.json.JSONObject jsonObject = new org.json.JSONObject();
 			JSONArray jsonArray = new JSONArray();
-			for (Somministrazione somministrazione : src) {
+			for (Subministration somministrazione : src) {
 				jsonArray.add(somministrazione);				
 			}
 			jsonObject.put("somministrazioni", jsonArray);
@@ -158,7 +158,7 @@ public class Model {
 
 	@SuppressWarnings("unchecked")
 	public void readInfermieriFromFile() {
-		listaInfermieri = new ArrayList<Infermiere>();
+		listaInfermieri = new ArrayList<Nurse>();
 		JSONParser jsonParser = new JSONParser();
 		try {
 			Object obj = jsonParser.parse(new FileReader("assets//fileInfermieri.json"));
@@ -171,7 +171,7 @@ public class Model {
 					String id = ((Map<String, Object>)user).get("id").toString();
 					String pass = ((Map<String, Object>)user).get("pass").toString();
 					User tmpUser = new User(id, pass);
-					Infermiere infermiere = new Infermiere(nome, cognome, codiceDiIdentificazione, tmpUser);
+					Nurse infermiere = new Nurse(nome, cognome, codiceDiIdentificazione, tmpUser);
 					listaInfermieri.add(infermiere);
 				}
 			}
@@ -182,7 +182,7 @@ public class Model {
 	
 	@SuppressWarnings("unchecked")
 	public void readMediciFromFile() {
-		listaMedici = new ArrayList<Medico>();
+		listaMedici = new ArrayList<Doctor>();
 		JSONParser jsonParser = new JSONParser();
 		try {
 			Object obj = jsonParser.parse(new FileReader("assets//fileMedici.json"));
@@ -195,7 +195,7 @@ public class Model {
 					String id = ((Map<String, Object>)user).get("id").toString();
 					String pass = ((Map<String, Object>)user).get("pass").toString();
 					User tmpUser = new User(id, pass);
-					Medico medico = new Medico(nome, cognome, codiceDiIdentificazione, tmpUser);
+					Doctor medico = new Doctor(nome, cognome, codiceDiIdentificazione, tmpUser);
 					listaMedici.add(medico);
 				}
 			}
@@ -246,10 +246,10 @@ public class Model {
 							String nomeFarmaco = ((Map<String, Object>)o2).get("nomeFarmaco").toString();
 							Integer quantitaDiFarmacoPerDose = Integer.parseInt(((Map<String, Object>)o2).get("quantitaDiFarmacoPerDose").toString());
 							Integer nrDosiGiornaliere = Integer.parseInt(((Map<String, Object>)o2).get("nrDosiGiornaliere").toString());
-							Farmaco farmaco = new Farmaco(nomeFarmaco, durataTerapia, nrDosiGiornaliere, quantitaDiFarmacoPerDose);
+							Medicine farmaco = new Medicine(nomeFarmaco, durataTerapia, nrDosiGiornaliere, quantitaDiFarmacoPerDose);
 							listaFarmaci.add(farmaco);
 						}
-						Prescrizione prescrizione = new Prescrizione(listaFarmaci, dataPrescrizione);
+						Prescription prescrizione = new Prescription(listaFarmaci, dataPrescrizione);
 						listaPrescrizioni.add(prescrizione);
 					}
 				}
@@ -273,7 +273,7 @@ public class Model {
 						String nomeFarmaco = ((Map<String, Object>)o1).get("nomeFarmaco").toString();
 						String nomeInfermiere = ((Map<String, Object>)o1).get("nomeInfermiere").toString();
 						Integer quantitaDosi = Integer.parseInt(((Map<String, Object>)o1).get("quantitaDosi").toString());
-						Somministrazione tmp = new Somministrazione(nomeFarmaco, quantitaDosi, todayDate, nomeInfermiere);
+						Subministration tmp = new Subministration(nomeFarmaco, quantitaDosi, todayDate, nomeInfermiere);
 						listaSomministrazioni.add(tmp);
 					}
 				}
@@ -374,19 +374,19 @@ public class Model {
 		this.listaPazienti = listaPazienti;
 	}
 
-	public ArrayList<Infermiere> getListaInfermieri() {
+	public ArrayList<Nurse> getListaInfermieri() {
 		return listaInfermieri;
 	}
 
-	public void setListaInfermieri(ArrayList<Infermiere> listaInfermieri) {
+	public void setListaInfermieri(ArrayList<Nurse> listaInfermieri) {
 		this.listaInfermieri = listaInfermieri;
 	}
 
-	public ArrayList<Medico> getListaMedici() {
+	public ArrayList<Doctor> getListaMedici() {
 		return listaMedici;
 	}
 
-	public void setListaMedici(ArrayList<Medico> listaMedici) {
+	public void setListaMedici(ArrayList<Doctor> listaMedici) {
 		this.listaMedici = listaMedici;
 	}
 
@@ -398,27 +398,27 @@ public class Model {
 		this.listaPrimari = listaPrimari;
 	}
 
-	public ArrayList<Prescrizione> getListaPrescrizioni() {
+	public ArrayList<Prescription> getListaPrescrizioni() {
 		return listaPrescrizioni;
 	}
 
-	public void setListaPrescrizioni(ArrayList<Prescrizione> listaPrescrizioni) {
+	public void setListaPrescrizioni(ArrayList<Prescription> listaPrescrizioni) {
 		this.listaPrescrizioni = listaPrescrizioni;
 	}
 
-	public ArrayList<Farmaco> getListaFarmaci() {
+	public ArrayList<Medicine> getListaFarmaci() {
 		return listaFarmaci;
 	}
 
-	public void setListaFarmaci(ArrayList<Farmaco> listaFarmaci) {
+	public void setListaFarmaci(ArrayList<Medicine> listaFarmaci) {
 		this.listaFarmaci = listaFarmaci;
 	}
 
-	public ArrayList<Somministrazione> getListaSomministrazioni() {
+	public ArrayList<Subministration> getListaSomministrazioni() {
 		return listaSomministrazioni;
 	}
 
-	public void setListaSomministrazioni(ArrayList<Somministrazione> listaSomministrazioni) {
+	public void setListaSomministrazioni(ArrayList<Subministration> listaSomministrazioni) {
 		this.listaSomministrazioni = listaSomministrazioni;
 	}
 

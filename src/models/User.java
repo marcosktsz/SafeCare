@@ -9,7 +9,6 @@ public class User {
 		this.pass = pass;
 	}
 
-	//{{ Getters and settters
 	public String getId() {
 		return id;
 	}
@@ -25,5 +24,4 @@ public class User {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-	//}}	
 }

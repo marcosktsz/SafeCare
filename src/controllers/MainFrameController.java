@@ -18,8 +18,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import models.Infermiere;
-import models.Medico;
+import models.Nurse;
+import models.Doctor;
 import models.Model;
 import models.Observer;
 import models.ParametriVitali;
@@ -86,7 +86,7 @@ public class MainFrameController {
 		}
 		
 		
-		//crea report settimanale se è più vecchio di 7 giorni
+		//crea report settimanale se ? pi? vecchio di 7 giorni
 		theModel.setOldReportFile(theModel.getLatestFilefromDir("assets//Report settimanali//"));
 		models.Date todayDate = new models.Date(Calendar.getInstance().get(Calendar.DAY_OF_MONTH), 
 				(Calendar.getInstance().get(Calendar.MONTH) + 1), Calendar.getInstance().get(Calendar.YEAR));
@@ -130,7 +130,7 @@ public class MainFrameController {
 						theView.getBtnVisualizzaPrescrizionePrimario().setEnabled(true);
 						theView.getBtnVisualizzaParametriVitaliPrimario().setEnabled(true);
 						
-						//metto a 0 i parametri se il paziente è RICOVERATO
+						//metto a 0 i parametri se il paziente ? RICOVERATO
 						for (Paziente paziente2 : theModel.getListaParametriVitaliMedia().keySet()) {
 							if(paziente.equals(paziente2)) {
 								if(theModel.getListaParametriVitaliMedia().get(paziente2).isEmpty()) {
@@ -285,11 +285,11 @@ public class MainFrameController {
 		public void actionPerformed(ActionEvent e) {
 			if(theView.getNomeBottonePremuto().equals(new String("Infermiere"))) {
                 theModel.readInfermieriFromFile();
-                for (Infermiere infermiere : theModel.getListaInfermieri()) {
-                	if(theView.getTxtUtente().getText().equals(infermiere.getAutentificazione().getId()) && 
-                			theView.getTxtPasswordField().getText().equals(infermiere.getAutentificazione().getPass())) {
+                for (Nurse infermiere : theModel.getListaInfermieri()) {
+                	if(theView.getTxtUtente().getText().equals(infermiere.getAuth().getId()) && 
+                			theView.getTxtPasswordField().getText().equals(infermiere.getAuth().getPass())) {
                 			verifica = true;
-                			theView.getLblNomePersonale().setText(infermiere.getNome() + " " + infermiere.getCognome());
+                			theView.getLblNomePersonale().setText(infermiere.getName() + " " + infermiere.getLastName());
                 	}
                 }
                 if(verifica == true) {
@@ -304,11 +304,11 @@ public class MainFrameController {
             
 			if(theView.getNomeBottonePremuto().equals(new String("Medico"))) {
                 theModel.readMediciFromFile();
-                for (Medico medico : theModel.getListaMedici()) {
-                	if(theView.getTxtUtente().getText().equals(medico.getAutentificazione().getId()) && 
-                			theView.getTxtPasswordField().getText().equals(medico.getAutentificazione().getPass())) {
+                for (Doctor medico : theModel.getListaMedici()) {
+                	if(theView.getTxtUtente().getText().equals(medico.getAuth().getId()) && 
+                			theView.getTxtPasswordField().getText().equals(medico.getAuth().getPass())) {
                 			verifica = true;
-                			theView.getLblNomePersonale().setText(medico.getNome() + " " + medico.getCognome());
+                			theView.getLblNomePersonale().setText(medico.getName() + " " + medico.getLastName());
                 	}
                 }
                 if(verifica == true) {
@@ -324,10 +324,10 @@ public class MainFrameController {
 			if(theView.getNomeBottonePremuto().equals(new String("Primario"))) {
                 theModel.readPrimariFromFile();
                 for (Primario primario : theModel.getListaPrimari()) {
-                	if(theView.getTxtUtente().getText().equals(primario.getAutentificazione().getId()) && 
-                			theView.getTxtPasswordField().getText().equals(primario.getAutentificazione().getPass())) {
+                	if(theView.getTxtUtente().getText().equals(primario.getAuth().getId()) && 
+                			theView.getTxtPasswordField().getText().equals(primario.getAuth().getPass())) {
                 			verifica = true;
-                			theView.getLblNomePersonale().setText(primario.getNome() + " " + primario.getCognome());
+                			theView.getLblNomePersonale().setText(primario.getName() + " " + primario.getLastName());
                 	}
                 }
                 if(verifica == true) {
@@ -392,14 +392,14 @@ public class MainFrameController {
 					theView.getBtnRegistrati().setText("Registrati");
 					if(theView.getNomeBottonePremuto().equals(new String("Infermiere"))) {
 						theModel.readInfermieriFromFile();
-						theModel.getListaInfermieri().add(new Infermiere(theView.getTxtNomeRegistrazione().getText(),
+						theModel.getListaInfermieri().add(new Nurse(theView.getTxtNomeRegistrazione().getText(),
 								theView.getTxtCognomeRegistrazione().getText(), 
 								theView.getTxtCodiceDiIdentificazioneRegistrazione().getText(), 
 								new User(theView.getTxtUtenteRegistrazione().getText(), theView.getTxtPasswordRegistrazione().getText())));
 						theModel.writeToFile(theModel.getListaInfermieri());
 					} else if(theView.getNomeBottonePremuto().equals(new String("Medico"))) {
 						theModel.readMediciFromFile();
-						theModel.getListaMedici().add(new Medico(theView.getTxtNomeRegistrazione().getText(),
+						theModel.getListaMedici().add(new Doctor(theView.getTxtNomeRegistrazione().getText(),
 								theView.getTxtCognomeRegistrazione().getText(), 
 								theView.getTxtCodiceDiIdentificazioneRegistrazione().getText(), 
 								new User(theView.getTxtUtenteRegistrazione().getText(), theView.getTxtPasswordRegistrazione().getText())));
@@ -629,7 +629,7 @@ public class MainFrameController {
 							theView.getBtnVisualizzaPrescrizionePrimario().setEnabled(false);
 							theView.getBtnVisualizzaParametriVitaliPrimario().setEnabled(false);
 							theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(theView.getTodayDate()) + "]\tPaziente: " + paziente.getNome() + " " + paziente.getCognome() + "[Codice Fiscale: " + 
-								paziente.getCodiceUnivocoSanitario() + "] è stato RILASCIATO!", theModel.getNewReportFile());
+								paziente.getCodiceUnivocoSanitario() + "] ? stato RILASCIATO!", theModel.getNewReportFile());
 						}
 					}
 				}
@@ -709,7 +709,7 @@ public class MainFrameController {
 				if(theView.getTabellaAllarmi().getValueAt(theView.getTabellaAllarmi().getSelectedRow(), 5) == null) {
 					theView.getTabellaAllarmi().setValueAt("STOPPED", theView.getTabellaAllarmi().getSelectedRow(), 5);
 				} else {
-				JOptionPane.showMessageDialog(null, "L'allarme è già stato fermato");
+				JOptionPane.showMessageDialog(null, "L'allarme ? gi? stato fermato");
 				}
 			} else {
 				JOptionPane.showMessageDialog(null, "Permesso negato! Solo un medico ha il permesso di fermare gli allarmi!");
@@ -850,7 +850,7 @@ public class MainFrameController {
 		models.Date currentDate = new models.Date(Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.YEAR));
 		
 		if(checkDatePattern(data)){
-			System.out.println("Pattern della data è corretto!");
+			System.out.println("Pattern della data ? corretto!");
 			models.Date date = stringToDate(data);
 			if(date.checkIfLegal() && date.compareTo(currentDate) != 1) {
 				validation = true;
@@ -861,7 +861,7 @@ public class MainFrameController {
 			}
 		} else {
 			validation = false;
-			System.out.println("Pattern della data non è corretto");
+			System.out.println("Pattern della data non ? corretto");
 		}
 		
 		return validation;
