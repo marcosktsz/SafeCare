@@ -1,0 +1,49 @@
+{
+	"Medici": [
+		{
+			"autentificazione": {
+				"pass": "care",
+				"id": "medico1"
+			},
+			"cognome": "Perosino",
+			"codiceDiIdentificazione": "AAAA1",
+			"nome": "Elisabetta"
+		},
+		{
+			"autentificazione": {
+				"pass": "care",
+				"id": "medico2"
+			},
+			"cognome": "Carteni",
+			"codiceDiIdentificazione": "AAAA2",
+			"nome": "Giacomo"
+		},
+		{
+			"autentificazione": {
+				"pass": "care",
+				"id": "medico3"
+			},
+			"cognome": "Carlizzi",
+			"codiceDiIdentificazione": "MMM3",
+			"nome": "Carmine Naccari"
+		},
+		{
+			"autentificazione": {
+				"pass": "care",
+				"id": "medico4"
+			},
+			"cognome": "Brogna",
+			"codiceDiIdentificazione": "MMM3",
+			"nome": "Christian"
+		},
+		{
+			"autentificazione": {
+				"pass": "care",
+				"id": "medico5"
+			},
+			"cognome": "Gemelli",
+			"codiceDiIdentificazione": "MMM3",
+			"nome": "Giancarlo"
+		}		
+	]
+}

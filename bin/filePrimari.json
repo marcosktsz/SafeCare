@@ -1,0 +1,22 @@
+{
+	"primari": [
+		{
+			"autentificazione": {
+				"pass": "care",
+				"id": "primario1"
+			},
+			"cognome": "Moisa",
+			"codiceDiIdentificazione": "PPPP2",
+			"nome": "Gabriel"
+		},
+		{
+			"autentificazione": {
+				"pass": "care",
+				"id": "primario2"
+			},
+			"cognome": "Agyeman",
+			"codiceDiIdentificazione": "PPPP2",
+			"nome": "Kevin"
+		}
+	]
+}
