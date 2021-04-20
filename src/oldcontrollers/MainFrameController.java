@@ -1,4 +1,4 @@
-package controllers;
+package oldcontrollers;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -20,11 +20,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import models.*;
-import view.MainFrame;
-import view.NuovoPazienteFrame;
-import view.ParametriVitaliFrame;
-import view.PrescrizioneFrame;
-import view.SomministrazioneFarmaciFrame;
+import oldview.MainFrame;
+import oldview.NuovoPazienteFrame;
+import oldview.ParametriVitaliFrame;
+import oldview.PrescrizioneFrame;
+import oldview.SomministrazioneFarmaciFrame;
 
 public class MainFrameController {
 	MainFrame theView;

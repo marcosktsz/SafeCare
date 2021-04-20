@@ -1,7 +1,7 @@
 package models;
 
-import controllers.MainFrameController;
-import view.MainFrame;
+import oldcontrollers.MainFrameController;
+import oldview.MainFrame;
 
 public class Main {
 
