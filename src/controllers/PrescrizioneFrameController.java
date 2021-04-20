@@ -22,9 +22,9 @@ public class PrescrizioneFrameController {
 		
 		if(mainFrame.getLblProfessione().getText().equals(new String("Medico"))) {
 			theView.getTabellaFarmaci().setEnabled(true);
-			theModel.readPrescrizioniFromFile(mainFrame.getList().getSelectedValue().toString());
-			if(!(theModel.getListaPrescrizioni().isEmpty())) {
-				Prescription lastPrescrizione = theModel.getListaPrescrizioni().get(theModel.getListaPrescrizioni().size() - 1);
+			theModel.readPrescriptionFromFile(mainFrame.getList().getSelectedValue().toString());
+			if(!(theModel.getPrescriptionList().isEmpty())) {
+				Prescription lastPrescrizione = theModel.getPrescriptionList().get(theModel.getPrescriptionList().size() - 1);
 				theView.getTxtDataPrescrizione().setText(lastPrescrizione.getPrescriptionDate());
 				for (Medicine farmaco : lastPrescrizione.getMedicalPrescription()) {
 					String[] tmp = {farmaco.getNomeFarmaco(), farmaco.getDurataTerapia().toString(), farmaco.getNrDosiGiornaliere().toString(), farmaco.getQuantitaDiFarmacoPerDose().toString()};
@@ -34,8 +34,8 @@ public class PrescrizioneFrameController {
 				theView.getTxtDataPrescrizione().setText(mainFrame.getDateFormat().format(mainFrame.getTodayDate()));
 			}
 			
-			theModel.readPazientiFromFile();
-			for (Patient patient : theModel.getListaPazienti()) {
+			theModel.readPatientFromFile();
+			for (Patient patient : theModel.getPatientList()) {
 				if(patient.getHealthId().equals(mainFrame.getList().getSelectedValue().getHealthId())) {
 					theView.getLblTxtNome().setText(patient.getName());
 					theView.getLblTxtCognome().setText(patient.getLastName());
@@ -43,16 +43,16 @@ public class PrescrizioneFrameController {
 				}
 			}
 			
-		} else if(mainFrame.getLblProfessione().getText().equals(new String("Infermiere")) || mainFrame.getLblProfessione().getText().equals(new String("Primario"))) {
+		} else if(mainFrame.getLblProfessione().getText().equals(new String("Infermiere")) || mainFrame.getLblProfessione().getText().equals(new String("ChiefDoc"))) {
 			theView.getBtnFarmaco().setEnabled(false);
 			theView.getBtnRimuovi().setEnabled(false);
 			theView.getBtnSave().setEnabled(false);
 			theView.getBtnNuovaPrescrizione().setEnabled(false);
 			theView.getBtnEsci().setEnabled(true);
 			theView.getTabellaFarmaci().setEnabled(false);
-			theModel.readPrescrizioniFromFile(mainFrame.getList().getSelectedValue().toString());
-			if(!(theModel.getListaPrescrizioni().isEmpty())) {
-				Prescription lastPrescrizione = theModel.getListaPrescrizioni().get(theModel.getListaPrescrizioni().size() - 1);
+			theModel.readPrescriptionFromFile(mainFrame.getList().getSelectedValue().toString());
+			if(!(theModel.getPrescriptionList().isEmpty())) {
+				Prescription lastPrescrizione = theModel.getPrescriptionList().get(theModel.getPrescriptionList().size() - 1);
 				theView.getTxtDataPrescrizione().setText(lastPrescrizione.getPrescriptionDate());
 				for (Medicine farmaco : lastPrescrizione.getMedicalPrescription()) {
 					String[] tmp = {farmaco.getNomeFarmaco(), farmaco.getDurataTerapia().toString(), farmaco.getNrDosiGiornaliere().toString(), farmaco.getQuantitaDiFarmacoPerDose().toString()};
@@ -62,8 +62,8 @@ public class PrescrizioneFrameController {
 				theView.getTxtDataPrescrizione().setText(mainFrame.getDateFormat().format(mainFrame.getTodayDate()));
 			}
 			
-			theModel.readPazientiFromFile();
-			for (Patient patient : theModel.getListaPazienti()) {
+			theModel.readPatientFromFile();
+			for (Patient patient : theModel.getPatientList()) {
 				if(patient.getHealthId().equals(mainFrame.getList().getSelectedValue().getHealthId())) {
 					theView.getLblTxtNome().setText(patient.getName());
 					theView.getLblTxtCognome().setText(patient.getLastName());
@@ -121,10 +121,10 @@ public class PrescrizioneFrameController {
 				listaFarmaciTmp.add(farmacoTmp);
 			}
 			
-			if(!(theModel.getListaPrescrizioni().isEmpty())) {
-				theModel.readPrescrizioniFromFile(mainFrame.getList().getSelectedValue().toString());
+			if(!(theModel.getPrescriptionList().isEmpty())) {
+				theModel.readPrescriptionFromFile(mainFrame.getList().getSelectedValue().toString());
 				boolean verifica = false;
-				for (Prescription prescrizione : theModel.getListaPrescrizioni()) {
+				for (Prescription prescrizione : theModel.getPrescriptionList()) {
 					if(prescrizione.getPrescriptionDate().equals(theView.getTxtDataPrescrizione().getText())) {
 						prescrizione.setMedicalPrescription(listaFarmaciTmp);
 						verifica = true;
@@ -133,18 +133,18 @@ public class PrescrizioneFrameController {
 				}
 				
 				if(verifica == false) {
-					theModel.getListaPrescrizioni().add(new Prescription(listaFarmaciTmp, theView.getTxtDataPrescrizione().getText()));
+					theModel.getPrescriptionList().add(new Prescription(listaFarmaciTmp, theView.getTxtDataPrescrizione().getText()));
 				}
 				
-				theModel.writePrescrizioniToFile(mainFrame.getList().getSelectedValue().toString(), theModel.getListaPrescrizioni());
+				theModel.writePrescriptionToFile(mainFrame.getList().getSelectedValue().toString(), theModel.getPrescriptionList());
 				theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(mainFrame.getTodayDate()) + "]\tPatient: " + mainFrame.getList().getSelectedValue().getName() + " " +
 						mainFrame.getList().getSelectedValue().getLastName() + "[Codice Fiscale: " + mainFrame.getList().getSelectedValue().getHealthId() + "]\t Medico: " +
 						mainFrame.getList().getSelectedValue().getDoc() + "\n\t\tPrescrizione Medica [" + theView.getTxtDataPrescrizione().getText() + "]:" +
 						listaFarmaciTmp.toString(), theModel.getNewReportFile());
 				theView.dispose();
-			} else if(theModel.getListaPrescrizioni().isEmpty()){
-				theModel.getListaPrescrizioni().add(new Prescription(listaFarmaciTmp, theView.getTxtDataPrescrizione().getText()));
-				theModel.writePrescrizioniToFile(mainFrame.getList().getSelectedValue().toString(), theModel.getListaPrescrizioni());
+			} else if(theModel.getPrescriptionList().isEmpty()){
+				theModel.getPrescriptionList().add(new Prescription(listaFarmaciTmp, theView.getTxtDataPrescrizione().getText()));
+				theModel.writePrescriptionToFile(mainFrame.getList().getSelectedValue().toString(), theModel.getPrescriptionList());
 				theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(mainFrame.getTodayDate()) + "]\tPatient: " + mainFrame.getList().getSelectedValue().getName() + " " +
 						mainFrame.getList().getSelectedValue().getLastName() + "[Codice Fiscale: " + mainFrame.getList().getSelectedValue().getHealthId() + "]\t Medico: " +
 						mainFrame.getList().getSelectedValue().getDoc() + "\n\t\tPrescrizione Medica [" + theView.getTxtDataPrescrizione().getText() + "]:\n\t\t\t" +

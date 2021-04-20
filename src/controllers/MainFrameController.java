@@ -52,8 +52,8 @@ public class MainFrameController {
 		parametriVitaliFrame = new ParametriVitaliFrame();
 		parametriVitaliFrameController = new ParametriVitaliFrameController(theModel, parametriVitaliFrame, theView);
 					
-		this.theModel.readPazientiFromFile();
-		this.theView.setList(theModel.getListaPazienti());		
+		this.theModel.readPatientFromFile();
+		this.theView.setList(theModel.getPatientList());
 		this.theView.addListMouseListener(new ListMouseListener());
 		this.theView.addLoginButtonListener(new LoginButtonListener());
 		this.theView.addNuovoPazienteListener(new NuovoPazienteListener());
@@ -70,11 +70,11 @@ public class MainFrameController {
 		this.theView.addButtonAllarmiListener(new ButtonAllarmiListener());
 		this.theView.addButtonStampaReportListener(new ButtonStampaReportListener());
 		
-		for (Patient patient : theModel.getListaPazienti()) {
+		for (Patient patient : theModel.getPatientList()) {
 			if(patient.getPatientState().equals(new String("RICOVERATO"))) {
-				theModel.getListaObserver().add(new Observer(patient.getName() + " " + patient.getLastName()));
-				theModel.getListaParametriVitali().put(patient, new ArrayList<VitalParameters>());
-				theModel.getListaParametriVitaliMedia().put(patient, new ArrayList<Means>());
+				theModel.getObserverList().add(new Observer(patient.getName() + " " + patient.getLastName()));
+				theModel.getVitalParametersList().put(patient, new ArrayList<VitalParameters>());
+				theModel.getMeansList().put(patient, new ArrayList<Means>());
 			}
 		}
 		
@@ -102,7 +102,7 @@ public class MainFrameController {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			for (Patient patient : theModel.getListaPazienti()) {
+			for (Patient patient : theModel.getPatientList()) {
 				if(theView.getList().getSelectedValue().equals(patient)) {
 					if(timing) {
 						timing = false;
@@ -124,18 +124,18 @@ public class MainFrameController {
 						theView.getBtnVisualizzaParametriVitaliPrimario().setEnabled(true);
 						
 						//metto a 0 i parametri se il patient ? RICOVERATO
-						for (Patient patient2 : theModel.getListaParametriVitaliMedia().keySet()) {
+						for (Patient patient2 : theModel.getMeansList().keySet()) {
 							if(patient.equals(patient2)) {
-								if(theModel.getListaParametriVitaliMedia().get(patient2).isEmpty()) {
+								if(theModel.getMeansList().get(patient2).isEmpty()) {
 									theView.getTxtPressioneSistolica().setText(new Integer(0).toString());
 									theView.getTxtPressioneDiastolica().setText(new Integer(0).toString());
 									theView.getTxtFrequenzaCardiaca().setText(new Integer(0).toString());
 									theView.getTxtTemperaturaCorporea().setText(new Integer(0).toString());
 								} else {
-									theView.getTxtPressioneSistolica().setText(df.format(theModel.getListaParametriVitaliMedia().get(patient2).get(theModel.getListaParametriVitaliMedia().get(patient2).size() - 1).getSBPMean()).toString());
-									theView.getTxtPressioneDiastolica().setText(df.format(theModel.getListaParametriVitaliMedia().get(patient2).get(theModel.getListaParametriVitaliMedia().get(patient2).size() - 1).getDBPMean()).toString());
-									theView.getTxtFrequenzaCardiaca().setText(df.format(theModel.getListaParametriVitaliMedia().get(patient2).get(theModel.getListaParametriVitaliMedia().get(patient2).size() - 1).getOxMean()).toString());
-									theView.getTxtTemperaturaCorporea().setText(df.format(theModel.getListaParametriVitaliMedia().get(patient2).get(theModel.getListaParametriVitaliMedia().get(patient2).size() - 1).getBtMean()).toString());
+									theView.getTxtPressioneSistolica().setText(df.format(theModel.getMeansList().get(patient2).get(theModel.getMeansList().get(patient2).size() - 1).getSBPMean()).toString());
+									theView.getTxtPressioneDiastolica().setText(df.format(theModel.getMeansList().get(patient2).get(theModel.getMeansList().get(patient2).size() - 1).getDBPMean()).toString());
+									theView.getTxtFrequenzaCardiaca().setText(df.format(theModel.getMeansList().get(patient2).get(theModel.getMeansList().get(patient2).size() - 1).getOxMean()).toString());
+									theView.getTxtTemperaturaCorporea().setText(df.format(theModel.getMeansList().get(patient2).get(theModel.getMeansList().get(patient2).size() - 1).getBtMean()).toString());
 								}
 							}
 						}						
@@ -147,18 +147,18 @@ public class MainFrameController {
 							@Override
 							public void run() {
 								timing = true;
-								for (Patient patient2 : theModel.getListaParametriVitaliMedia().keySet()) {
+								for (Patient patient2 : theModel.getMeansList().keySet()) {
 									if(patient.equals(patient2)) {
-										if(theModel.getListaParametriVitaliMedia().get(patient2).isEmpty()) {
+										if(theModel.getMeansList().get(patient2).isEmpty()) {
 											theView.getTxtPressioneSistolica().setText(new Integer(0).toString());
 											theView.getTxtPressioneDiastolica().setText(new Integer(0).toString());
 											theView.getTxtFrequenzaCardiaca().setText(new Integer(0).toString());
 											theView.getTxtTemperaturaCorporea().setText(new Integer(0).toString());
 										} else {
-											theView.getTxtPressioneSistolica().setText(df.format(theModel.getListaParametriVitaliMedia().get(patient2).get(theModel.getListaParametriVitaliMedia().get(patient2).size() - 1).getSBPMean()).toString());
-											theView.getTxtPressioneDiastolica().setText(df.format(theModel.getListaParametriVitaliMedia().get(patient2).get(theModel.getListaParametriVitaliMedia().get(patient2).size() - 1).getDBPMean()).toString());
-											theView.getTxtFrequenzaCardiaca().setText(df.format(theModel.getListaParametriVitaliMedia().get(patient2).get(theModel.getListaParametriVitaliMedia().get(patient2).size() - 1).getOxMean()).toString());
-											theView.getTxtTemperaturaCorporea().setText(df.format(theModel.getListaParametriVitaliMedia().get(patient2).get(theModel.getListaParametriVitaliMedia().get(patient2).size() - 1).getBtMean()).toString());
+											theView.getTxtPressioneSistolica().setText(df.format(theModel.getMeansList().get(patient2).get(theModel.getMeansList().get(patient2).size() - 1).getSBPMean()).toString());
+											theView.getTxtPressioneDiastolica().setText(df.format(theModel.getMeansList().get(patient2).get(theModel.getMeansList().get(patient2).size() - 1).getDBPMean()).toString());
+											theView.getTxtFrequenzaCardiaca().setText(df.format(theModel.getMeansList().get(patient2).get(theModel.getMeansList().get(patient2).size() - 1).getOxMean()).toString());
+											theView.getTxtTemperaturaCorporea().setText(df.format(theModel.getMeansList().get(patient2).get(theModel.getMeansList().get(patient2).size() - 1).getBtMean()).toString());
 										}
 									}
 								}
@@ -277,8 +277,8 @@ public class MainFrameController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(theView.getNomeBottonePremuto().equals(new String("Infermiere"))) {
-                theModel.readInfermieriFromFile();
-                for (Nurse infermiere : theModel.getListaInfermieri()) {
+                theModel.readNurseFromFile();
+                for (Nurse infermiere : theModel.getNurseList()) {
                 	if(theView.getTxtUtente().getText().equals(infermiere.getAuth().getId()) && 
                 			theView.getTxtPasswordField().getText().equals(infermiere.getAuth().getPass())) {
                 			verifica = true;
@@ -296,8 +296,8 @@ public class MainFrameController {
             }
             
 			if(theView.getNomeBottonePremuto().equals(new String("Medico"))) {
-                theModel.readMediciFromFile();
-                for (Doctor medico : theModel.getListaMedici()) {
+                theModel.readDocFromFile();
+                for (Doctor medico : theModel.getDocList()) {
                 	if(theView.getTxtUtente().getText().equals(medico.getAuth().getId()) && 
                 			theView.getTxtPasswordField().getText().equals(medico.getAuth().getPass())) {
                 			verifica = true;
@@ -314,13 +314,13 @@ public class MainFrameController {
                 }
             }
             
-			if(theView.getNomeBottonePremuto().equals(new String("Primario"))) {
-                theModel.readPrimariFromFile();
-                for (Primario primario : theModel.getListaPrimari()) {
-                	if(theView.getTxtUtente().getText().equals(primario.getAuth().getId()) && 
-                			theView.getTxtPasswordField().getText().equals(primario.getAuth().getPass())) {
+			if(theView.getNomeBottonePremuto().equals(new String("ChiefDoc"))) {
+                theModel.readChiefFromFile();
+                for (ChiefDoc chiefDoc : theModel.getChiefList()) {
+                	if(theView.getTxtUtente().getText().equals(chiefDoc.getAuth().getId()) &&
+                			theView.getTxtPasswordField().getText().equals(chiefDoc.getAuth().getPass())) {
                 			verifica = true;
-                			theView.getLblNomePersonale().setText(primario.getName() + " " + primario.getLastName());
+                			theView.getLblNomePersonale().setText(chiefDoc.getName() + " " + chiefDoc.getLastName());
                 	}
                 }
                 if(verifica == true) {
@@ -349,7 +349,7 @@ public class MainFrameController {
 				cambiaPannelloPersonale(theView.getPannelloMedico(), theView.getPannelloBottoni());
             }
             
-			if(theView.getNomeBottonePremuto().equals(new String("Primario"))) {
+			if(theView.getNomeBottonePremuto().equals(new String("ChiefDoc"))) {
 				cambiaPannelloPersonale(theView.getPannelloPrimario(), theView.getPannelloBottoni());
             }
 		theView.getLblNomePersonale().setText("");
@@ -384,26 +384,26 @@ public class MainFrameController {
 					theView.getBtnLogin().setEnabled(true);
 					theView.getBtnRegistrati().setText("Registrati");
 					if(theView.getNomeBottonePremuto().equals(new String("Infermiere"))) {
-						theModel.readInfermieriFromFile();
-						theModel.getListaInfermieri().add(new Nurse(theView.getTxtNomeRegistrazione().getText(),
+						theModel.readNurseFromFile();
+						theModel.getNurseList().add(new Nurse(theView.getTxtNomeRegistrazione().getText(),
 								theView.getTxtCognomeRegistrazione().getText(), 
 								theView.getTxtCodiceDiIdentificazioneRegistrazione().getText(), 
 								new User(theView.getTxtUtenteRegistrazione().getText(), theView.getTxtPasswordRegistrazione().getText())));
-						theModel.writeToFile(theModel.getListaInfermieri());
+						theModel.writeToFile(theModel.getNurseList());
 					} else if(theView.getNomeBottonePremuto().equals(new String("Medico"))) {
-						theModel.readMediciFromFile();
-						theModel.getListaMedici().add(new Doctor(theView.getTxtNomeRegistrazione().getText(),
+						theModel.readDocFromFile();
+						theModel.getDocList().add(new Doctor(theView.getTxtNomeRegistrazione().getText(),
 								theView.getTxtCognomeRegistrazione().getText(), 
 								theView.getTxtCodiceDiIdentificazioneRegistrazione().getText(), 
 								new User(theView.getTxtUtenteRegistrazione().getText(), theView.getTxtPasswordRegistrazione().getText())));
-						theModel.writeToFile(theModel.getListaMedici());
-					} else if(theView.getNomeBottonePremuto().equals(new String("Primario"))) {
-						theModel.readPrimariFromFile();
-						theModel.getListaPrimari().add(new Primario(theView.getTxtNomeRegistrazione().getText(),
+						theModel.writeToFile(theModel.getDocList());
+					} else if(theView.getNomeBottonePremuto().equals(new String("ChiefDoc"))) {
+						theModel.readChiefFromFile();
+						theModel.getChiefList().add(new ChiefDoc(theView.getTxtNomeRegistrazione().getText(),
 								theView.getTxtCognomeRegistrazione().getText(), 
 								theView.getTxtCodiceDiIdentificazioneRegistrazione().getText(), 
 								new User(theView.getTxtUtenteRegistrazione().getText(), theView.getTxtPasswordRegistrazione().getText())));
-						theModel.writeToFile(theModel.getListaPrimari());
+						theModel.writeToFile(theModel.getChiefList());
 					}
 				}
 			}
@@ -461,7 +461,7 @@ public class MainFrameController {
 						theView.getTxtDataRilascio().setEditable(false);
 					}
 				
-					if(theView.getNomeBottonePremuto().equals(new String("Primario"))) {
+					if(theView.getNomeBottonePremuto().equals(new String("ChiefDoc"))) {
 						theView.getTxtCodiceUnicoSanitario().setEditable(false);
 						theView.getTxtNome().setEditable(true);
 						theView.getTxtCognome().setEditable(true);
@@ -478,7 +478,7 @@ public class MainFrameController {
 						theView.getBtnModificaDatiMedico().getText().equals(new String("Salva")) &&
 						theView.getBtnModificaDatiPrimario().getText().equals(new String("Salva"))) {
 					if(checkDateValidation(theView.getTxtDataDiNascita().getText())) {
-						for (Patient patient : theModel.getListaPazienti()) {
+						for (Patient patient : theModel.getPatientList()) {
 							if(theView.getList().getSelectedValue().getName().equals(patient.getName()) &&
 									theView.getList().getSelectedValue().getLastName().equals(patient.getLastName())) {
 								patient.setHealthId(theView.getTxtCodiceUnicoSanitario().getText());
@@ -492,7 +492,7 @@ public class MainFrameController {
 								patient.setRoom(theView.getTxtSalone().getText());
 								patient.setDoc(theView.getTxtDottore().getText());
 								patient.setPatientState(theView.getLblStatoPaziente().getText());
-								theModel.writeToFile(theModel.getListaPazienti());
+								theModel.writeToFile(theModel.getPatientList());
 							}
 						}
 						theView.getTxtCodiceUnicoSanitario().setEditable(false);
@@ -567,8 +567,8 @@ public class MainFrameController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(theView.getList().getSelectedValue() != null) {
-				theModel.readPrescrizioniFromFile(theView.getList().getSelectedValue().toString());
-				if(!(theModel.getListaPrescrizioni().isEmpty())) {
+				theModel.readPrescriptionFromFile(theView.getList().getSelectedValue().toString());
+				if(!(theModel.getPrescriptionList().isEmpty())) {
 					file = new File("assets//Somministrazioni Farmaci//" + theView.getList().getSelectedValue() + ".json");
 					if(file.isFile() == true) {
 						somministrazioneFarmaciFrame = new SomministrazioneFarmaciFrame();
@@ -602,7 +602,7 @@ public class MainFrameController {
 			models.Date currentDate = new models.Date(Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.YEAR));
 			
 			if(theView.getList().getSelectedValue() != null) {			
-				for (Patient patient : theModel.getListaPazienti()) {
+				for (Patient patient : theModel.getPatientList()) {
 					if(theView.getList().getSelectedValue().getHealthId().equals(patient.getHealthId())) {
 						if(theView.getTxtDataRilascio().getText().equals(new String("-"))) {
 							patient.setPatientState(new String("RILASCIATO"));
@@ -610,9 +610,9 @@ public class MainFrameController {
 							theView.getLblStatoPaziente().setForeground(new Color(24, 158, 24));
 							theView.getTxtDataRilascio().setText(currentDate.toString());
 							patient.setReleaseDate(theView.getTxtDataRilascio().getText());
-							theModel.writeToFile(theModel.getListaPazienti());
+							theModel.writeToFile(theModel.getPatientList());
 							theModel.removeObserver(patient);
-							theModel.removeParametriVitali(patient);
+							theModel.removeVitalParameters(patient);
 							theView.getTxtPressioneSistolica().setText("-");
 							theView.getTxtPressioneDiastolica().setText("-");
 							theView.getTxtFrequenzaCardiaca().setText("-");
@@ -646,7 +646,7 @@ public class MainFrameController {
 					
 					@Override
 					public void run() {
-						for (Observer observer: theModel.getListaObserver()) {
+						for (Observer observer: theModel.getObserverList()) {
 							if(observer.getObserverName().equals(theView.getList().getSelectedValue().getName() + " " + theView.getList().getSelectedValue().getLastName())) {
 								//pressione sistolica
 								if(observer.getSysPressure() <= 90 || observer.getSysPressure() >= 120) {

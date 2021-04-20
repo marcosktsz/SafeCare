@@ -42,7 +42,7 @@ public class NuovoPazienteFrameController {
 				if(theView.getTxtCodiceUnicoSanitario().length() == 16) {
 					tmp = new Patient(theView.getTxtCodiceUnicoSanitario(), theView.getTxtCognome(), theView.getTxtNome(), none, none, none, none,
 							none, currentDate.toString(), none, "RICOVERATO");
-					for (Patient patient : theModel.getListaPazienti()) {
+					for (Patient patient : theModel.getPatientList()) {
 						if(patient.getHealthId().equals(tmp.getHealthId())) {
 							JOptionPane.showMessageDialog(null, "Patient gi� esistente!");
 							verifica = true;
@@ -51,12 +51,12 @@ public class NuovoPazienteFrameController {
 						}
 					}
 					if(verifica == false) {
-						theModel.getListaPazienti().add(tmp);
-						theModel.writeToFile(theModel.getListaPazienti());
+						theModel.getPatientList().add(tmp);
+						theModel.writeToFile(theModel.getPatientList());
 						mainFrame.getListModel().addElement(tmp);
-						theModel.getListaObserver().add(new Observer(tmp.getName() + " " + tmp.getLastName()));
-						theModel.getListaParametriVitali().put(tmp, new ArrayList<VitalParameters>());
-						theModel.getListaParametriVitaliMedia().put(tmp, new ArrayList<Means>());
+						theModel.getObserverList().add(new Observer(tmp.getName() + " " + tmp.getLastName()));
+						theModel.getVitalParametersList().put(tmp, new ArrayList<VitalParameters>());
+						theModel.getMeansList().put(tmp, new ArrayList<Means>());
 						theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(mainFrame.getTodayDate()) + "]\tPatient: " + tmp.getName() + " " + tmp.getLastName() + "[Codice Fiscale: " +
 								tmp.getHealthId() + "] � stato RICOVERATO!", theModel.getNewReportFile());
 						theView.dispose();

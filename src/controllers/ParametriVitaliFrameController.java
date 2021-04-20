@@ -42,7 +42,7 @@ public class ParametriVitaliFrameController {
 					@Override
 					public void run() {
 						
-						for (Observer observer: theModel.getListaObserver()) {
+						for (Observer observer: theModel.getObserverList()) {
 							sbp = (double) (rand.nextGaussian() * 4) + 105;				
 							dbp = (double) (rand.nextGaussian() * 3) + 70;
 							observer.setSysPressure(sbp);
@@ -53,7 +53,7 @@ public class ParametriVitaliFrameController {
 							
 							//ipotensione
 							if(observer.getSysPressure() <= 90 && observer.getDiasPressure() <= 60) {
-								for (Patient patient : theModel.getListaPazienti()) {
+								for (Patient patient : theModel.getPatientList()) {
 									if(observer.getObserverName().equals(patient.getName() + " " + patient.getLastName())) {
 										String[] tmp = {patient.getName(), patient.getLastName(), patient.getRoom(), "IPOTENSIONE", new Integer(2).toString()};
 										mainFrame.getTableModelAllarmi().addRow(tmp);
@@ -66,7 +66,7 @@ public class ParametriVitaliFrameController {
 							
 							//ipertensione
 							if(observer.getSysPressure() >= 130 && observer.getDiasPressure() >= 90) {
-								for (Patient patient : theModel.getListaPazienti()) {
+								for (Patient patient : theModel.getPatientList()) {
 									if(observer.getObserverName().equals(patient.getName() + " " + patient.getLastName())) {
 										String[] tmp = {patient.getName(), patient.getLastName(), patient.getRoom(), "IPERTENSIONE", new Integer(2).toString()};
 										mainFrame.getTableModelAllarmi().addRow(tmp);
@@ -85,7 +85,7 @@ public class ParametriVitaliFrameController {
 					@Override
 					public void run() { 
 						
-						for (Observer observer: theModel.getListaObserver()) {
+						for (Observer observer: theModel.getObserverList()) {
 							fc = (double) (rand.nextGaussian() * 3) + 85;	
 							observer.setOxSaturation(fc);
 							observer.setOxSum(observer.getOxSum() + fc);
@@ -93,7 +93,7 @@ public class ParametriVitaliFrameController {
 							
 							//tachicardia
 							if(observer.getOxSaturation() >= 100) {
-								for (Patient patient : theModel.getListaPazienti()) {
+								for (Patient patient : theModel.getPatientList()) {
 									if(observer.getObserverName().equals(patient.getName() + " " + patient.getLastName())) {
 										String[] tmp = {patient.getName(), patient.getLastName(), patient.getRoom(), "TACHICARDIA", new Integer(1).toString()};
 										mainFrame.getTableModelAllarmi().addRow(tmp);
@@ -106,7 +106,7 @@ public class ParametriVitaliFrameController {
 							
 							//brachicardia
 							if(observer.getOxSaturation() <= 60) {
-								for (Patient patient : theModel.getListaPazienti()) {
+								for (Patient patient : theModel.getPatientList()) {
 									if(observer.getObserverName().equals(patient.getName() + " " + patient.getLastName())) {
 										String[] tmp = {patient.getName(), patient.getLastName(), patient.getRoom(), "BRACHICARDIA", new Integer(1).toString()};
 										mainFrame.getTableModelAllarmi().addRow(tmp);
@@ -119,7 +119,7 @@ public class ParametriVitaliFrameController {
 							
 							//fibrilazione ventricolare
 							if(observer.getOxSaturation() >= 140) {
-								for (Patient patient : theModel.getListaPazienti()) {
+								for (Patient patient : theModel.getPatientList()) {
 									if(observer.getObserverName().equals(patient.getName() + " " + patient.getLastName())) {
 										String[] tmp = {patient.getName(), patient.getLastName(), patient.getRoom(), "FLUTTER", new Integer(3).toString()};
 										mainFrame.getTableModelAllarmi().addRow(tmp);
@@ -139,7 +139,7 @@ public class ParametriVitaliFrameController {
 					@Override
 					public void run() {
 						
-						for (Observer observer: theModel.getListaObserver()) {
+						for (Observer observer: theModel.getObserverList()) {
 							tc = (double) (rand.nextGaussian() * 0.2) + 37;
 							observer.setBodyTemp(tc);
 							observer.setBtSum(observer.getBtSum() + tc);
@@ -147,7 +147,7 @@ public class ParametriVitaliFrameController {
 							
 							//ipotermia
 							if(observer.getBodyTemp() <= 36.5) {
-								for (Patient patient : theModel.getListaPazienti()) {
+								for (Patient patient : theModel.getPatientList()) {
 									if(observer.getObserverName().equals(patient.getName() + " " + patient.getLastName())) {
 										String[] tmp = {patient.getName(), patient.getLastName(), patient.getRoom(), "IPOTERMIA", new Integer(2).toString()};
 										mainFrame.getTableModelAllarmi().addRow(tmp);
@@ -160,7 +160,7 @@ public class ParametriVitaliFrameController {
 							
 							//ipetermia
 							if(observer.getBodyTemp() >= 37.5) {
-								for (Patient patient : theModel.getListaPazienti()) {
+								for (Patient patient : theModel.getPatientList()) {
 									if(observer.getObserverName().equals(patient.getName() + " " + patient.getLastName())) {
 										String[] tmp = {patient.getName(), patient.getLastName(), patient.getRoom(), "IPETERMIA", new Integer(2).toString()};
 										mainFrame.getTableModelAllarmi().addRow(tmp);
@@ -185,20 +185,20 @@ public class ParametriVitaliFrameController {
 						dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 						
 						//salvo i parametri
-						for (Patient patient : theModel.getListaParametriVitali().keySet()) {
-							for (Observer observer : theModel.getListaObserver()) {
+						for (Patient patient : theModel.getVitalParametersList().keySet()) {
+							for (Observer observer : theModel.getObserverList()) {
 								if(observer.getObserverName().equals(patient.getName() + " " + patient.getLastName())) {
-									theModel.getListaParametriVitali().get(patient).add(new VitalParameters(sbp, dbp, fc, tc, dateFormat.format(date)));
-									theModel.writeParametriVitaliToFile(observer.getObserverName(), theModel.getListaParametriVitali().get(patient));
+									theModel.getVitalParametersList().get(patient).add(new VitalParameters(sbp, dbp, fc, tc, dateFormat.format(date)));
+									theModel.writeVitalParametersToFile(observer.getObserverName(), theModel.getVitalParametersList().get(patient));
 								}
 							}
 						}
 						
 						//faccio le medie dei parametri
-						for (Patient patient : theModel.getListaParametriVitaliMedia().keySet()) {
-							for (Observer observer : theModel.getListaObserver()) {
+						for (Patient patient : theModel.getMeansList().keySet()) {
+							for (Observer observer : theModel.getObserverList()) {
 								if(observer.getObserverName().equals(patient.getName() + " " + patient.getLastName())) {
-									theModel.getListaParametriVitaliMedia().get(patient).add(new Means(observer.getSBPSum()/observer.getCounterSBPeDBP(),
+									theModel.getMeansList().get(patient).add(new Means(observer.getSBPSum()/observer.getCounterSBPeDBP(),
 											observer.getDBPSum()/observer.getCounterSBPeDBP(),
 											observer.getOxSum()/observer.getOxCounter(),
 											observer.getBtSum()/observer.getBtCounter()));

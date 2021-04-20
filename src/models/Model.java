@@ -20,19 +20,18 @@ public class Model {
 	File newReportFile = new File("assets//Report settimanali");
 	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 	
-	private ArrayList<Patient> listaPazienti;
-	private ArrayList<Nurse> listaInfermieri;
-	private ArrayList<Doctor> listaMedici;
-	private ArrayList<Primario> listaPrimari;
-	private ArrayList<Prescription> listaPrescrizioni;
-	private ArrayList<Subministration> listaSomministrazioni;
-	private ArrayList<Medicine> listaFarmaci;
-	private ArrayList<Observer> listaObserver = new ArrayList<Observer>();
-	private Map<Patient, ArrayList<VitalParameters>> listaParametriVitali = new HashMap<Patient, ArrayList<VitalParameters>>();
-	private Map<Patient, ArrayList<Means>> listaParametriVitaliMedia = new HashMap<Patient, ArrayList<Means>>();
+	private ArrayList<Patient> patientList;
+	private ArrayList<Nurse> nurseList;
+	private ArrayList<Doctor> docList;
+	private ArrayList<ChiefDoc> chiefList;
+	private ArrayList<Prescription> prescriptionList;
+	private ArrayList<Subministration> subList;
+	private ArrayList<Medicine> medicineList;
+	private ArrayList<Observer> observerList = new ArrayList<Observer>();
+	private Map<Patient, ArrayList<VitalParameters>> vitalParametersList = new HashMap<Patient, ArrayList<VitalParameters>>();
+	private Map<Patient, ArrayList<Means>> meansList = new HashMap<Patient, ArrayList<Means>>();
 	 
 	private Model() {
-		//empty
 	}
 	
 	public static Model getInstance() {
@@ -58,7 +57,7 @@ public class Model {
 				file = new File("assets//fileMedici.json");
 				nomeToJson = "Medici";
 				break;
-			} else if(object instanceof Primario) {
+			} else if(object instanceof ChiefDoc) {
 				file = new File("assets//filePrimari.json");
 				nomeToJson = "Primari";
 				break;
@@ -84,7 +83,7 @@ public class Model {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void writePrescrizioniToFile(String nomeFile, ArrayList<Prescription> src) {
+	public void writePrescriptionToFile(String nomeFile, ArrayList<Prescription> src) {
 		try (FileWriter fileWriter = new FileWriter(new File("assets//Prescrizioni Mediche//" + nomeFile + ".json"))) {
 			org.json.JSONObject jsonObject = new org.json.JSONObject();
 			JSONArray jsonArray = new JSONArray();
@@ -99,7 +98,7 @@ public class Model {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void writeSomministrazioniToFile(String nomeFile, ArrayList<Subministration> src) {
+	public void writeSubToFile(String nomeFile, ArrayList<Subministration> src) {
 		try (FileWriter fileWriter = new FileWriter(new File("assets//Somministrazioni Farmaci//" + nomeFile + ".json"))) {
 			org.json.JSONObject jsonObject = new org.json.JSONObject();
 			JSONArray jsonArray = new JSONArray();
@@ -114,7 +113,7 @@ public class Model {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void writeParametriVitaliToFile(String nomeFile, ArrayList<VitalParameters> src) {
+	public void writeVitalParametersToFile(String nomeFile, ArrayList<VitalParameters> src) {
 		try (FileWriter fileWriter = new FileWriter(new File("assets//Parametri Vitali//" + nomeFile + ".json"))) {
 			org.json.JSONObject jsonObject = new org.json.JSONObject();
 			JSONArray jsonArray = new JSONArray();
@@ -129,8 +128,8 @@ public class Model {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void readPazientiFromFile() {
-		listaPazienti = new ArrayList<Patient>();
+	public void readPatientFromFile() {
+		patientList = new ArrayList<Patient>();
 		JSONParser jsonParser = new JSONParser();
 		try {
 			Object obj = jsonParser.parse(new FileReader("assets//filePazienti.json"));
@@ -148,7 +147,7 @@ public class Model {
 					String dataRilascio = ((Map<String, Object>)o1).get("dataRilascio").toString();
 					String statoPaziente = ((Map<String, Object>)o1).get("statoPaziente").toString();
 					Patient patient = new Patient(codiceUnivocoSanitario, cognome, nome, luogoDiNascita, dottore, diagnosi, salone, dataDiNascita, dataRicovero, dataRilascio, statoPaziente);
-					listaPazienti.add(patient);
+					patientList.add(patient);
 				}
 			}
 		} catch (Exception e) {
@@ -157,8 +156,8 @@ public class Model {
 	}
 
 	@SuppressWarnings("unchecked")
-	public void readInfermieriFromFile() {
-		listaInfermieri = new ArrayList<Nurse>();
+	public void readNurseFromFile() {
+		nurseList = new ArrayList<Nurse>();
 		JSONParser jsonParser = new JSONParser();
 		try {
 			Object obj = jsonParser.parse(new FileReader("assets//fileInfermieri.json"));
@@ -172,7 +171,7 @@ public class Model {
 					String pass = ((Map<String, Object>)user).get("pass").toString();
 					User tmpUser = new User(id, pass);
 					Nurse infermiere = new Nurse(nome, cognome, codiceDiIdentificazione, tmpUser);
-					listaInfermieri.add(infermiere);
+					nurseList.add(infermiere);
 				}
 			}
 		} catch (Exception e) {
@@ -181,8 +180,8 @@ public class Model {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void readMediciFromFile() {
-		listaMedici = new ArrayList<Doctor>();
+	public void readDocFromFile() {
+		docList = new ArrayList<Doctor>();
 		JSONParser jsonParser = new JSONParser();
 		try {
 			Object obj = jsonParser.parse(new FileReader("assets//fileMedici.json"));
@@ -196,7 +195,7 @@ public class Model {
 					String pass = ((Map<String, Object>)user).get("pass").toString();
 					User tmpUser = new User(id, pass);
 					Doctor medico = new Doctor(nome, cognome, codiceDiIdentificazione, tmpUser);
-					listaMedici.add(medico);
+					docList.add(medico);
 				}
 			}
 		} catch (Exception e) {
@@ -205,8 +204,8 @@ public class Model {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void readPrimariFromFile() {
-		listaPrimari = new ArrayList<>();
+	public void readChiefFromFile() {
+		chiefList = new ArrayList<>();
 		JSONParser jsonParser = new JSONParser();
 		try {
 			Object obj = jsonParser.parse(new FileReader("assets//filePrimari.json"));
@@ -219,8 +218,8 @@ public class Model {
 					String id = ((Map<String, Object>)user).get("id").toString();
 					String pass = ((Map<String, Object>)user).get("pass").toString();
 					User tmpUser = new User(id, pass);
-					Primario primario = new Primario(nome, cognome, codiceDiIdentificazione, tmpUser);
-					listaPrimari.add(primario);
+					ChiefDoc chiefDoc = new ChiefDoc(nome, cognome, codiceDiIdentificazione, tmpUser);
+					chiefList.add(chiefDoc);
 				}
 			}
 		} catch (Exception e) {
@@ -229,8 +228,8 @@ public class Model {
 	}
 
 	@SuppressWarnings("unchecked")
-	public void readPrescrizioniFromFile(String nomeJson) {
-		listaPrescrizioni = new ArrayList<>();
+	public void readPrescriptionFromFile(String nomeJson) {
+		prescriptionList = new ArrayList<>();
 		File file = new File("assets//Prescrizioni Mediche//" + nomeJson + ".json");
 		if(file.length() != 0) {
 			JSONParser jsonParser = new JSONParser();
@@ -240,17 +239,17 @@ public class Model {
 					for (Object o1 : (JSONArray)o) {
 						Object prescrizioneMedica = ((Map<String, Object>)o1).get("prescrizioneMedica");
 						String dataPrescrizione = ((Map<String, Object>)o1).get("dataPrescrizione").toString();
-						listaFarmaci = new ArrayList<>();
+						medicineList = new ArrayList<>();
 						for (Object o2 : (JSONArray)prescrizioneMedica) {
 							Integer durataTerapia = Integer.parseInt(((Map<String, Object>)o2).get("durataTerapia").toString());
 							String nomeFarmaco = ((Map<String, Object>)o2).get("nomeFarmaco").toString();
 							Integer quantitaDiFarmacoPerDose = Integer.parseInt(((Map<String, Object>)o2).get("quantitaDiFarmacoPerDose").toString());
 							Integer nrDosiGiornaliere = Integer.parseInt(((Map<String, Object>)o2).get("nrDosiGiornaliere").toString());
 							Medicine farmaco = new Medicine(nomeFarmaco, durataTerapia, nrDosiGiornaliere, quantitaDiFarmacoPerDose);
-							listaFarmaci.add(farmaco);
+							medicineList.add(farmaco);
 						}
-						Prescription prescrizione = new Prescription(listaFarmaci, dataPrescrizione);
-						listaPrescrizioni.add(prescrizione);
+						Prescription prescrizione = new Prescription(medicineList, dataPrescrizione);
+						prescriptionList.add(prescrizione);
 					}
 				}
 			} catch (Exception e) {
@@ -260,8 +259,8 @@ public class Model {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void readSomministrazioniFromFile(String nomeJson) {
-		listaSomministrazioni = new ArrayList<>();
+	public void readSubFromFile(String nomeJson) {
+		subList = new ArrayList<>();
 		File file = new File("assets//Somministrazioni Farmaci//" + nomeJson + ".json");
 		if(file.length() != 0) {
 			JSONParser jsonParser = new JSONParser();
@@ -274,7 +273,7 @@ public class Model {
 						String nomeInfermiere = ((Map<String, Object>)o1).get("nomeInfermiere").toString();
 						Integer quantitaDosi = Integer.parseInt(((Map<String, Object>)o1).get("quantitaDosi").toString());
 						Subministration tmp = new Subministration(nomeFarmaco, todayDate, quantitaDosi, nomeInfermiere);
-						listaSomministrazioni.add(tmp);
+						subList.add(tmp);
 					}
 				}
 			} catch (Exception e) {
@@ -283,7 +282,7 @@ public class Model {
 		}
 	}
 	
-	public void writeCartellaClinica(Patient patient, File file) throws IOException {
+	public void writeRecords(Patient patient, File file) throws IOException {
 		FileWriter fw = new FileWriter(file);
         BufferedWriter bw = new BufferedWriter(fw);
         
@@ -293,17 +292,17 @@ public class Model {
 	
 	public void removeObserver(Patient patient) {
 		int index = 0;
-		for (Observer observer : listaObserver) {
+		for (Observer observer : observerList) {
 			if(observer.getObserverName().equals(patient.getName() + " " + patient.getLastName())) {
-				index = listaObserver.indexOf(observer);
+				index = observerList.indexOf(observer);
 			}
 		}
-		listaObserver.remove(index);
+		observerList.remove(index);
 	}
 	
-	public void removeParametriVitali(Patient patient) {
-		listaParametriVitali.remove(patient);
-		listaParametriVitaliMedia.remove(patient);
+	public void removeVitalParameters(Patient patient) {
+		vitalParametersList.remove(patient);
+		meansList.remove(patient);
 	}
 	
 	@SuppressWarnings("unused")
@@ -355,9 +354,6 @@ public class Model {
 			}
 		}
 		
-		//}}
-	
-	//{{ GETTERS AND SETTERS
 	public static Model getTheModel() {
 		return theModel;
 	}
@@ -366,84 +362,84 @@ public class Model {
 		Model.theModel = theModel;
 	}
 
-	public ArrayList<Patient> getListaPazienti() {
-		return listaPazienti;
+	public ArrayList<Patient> getPatientList() {
+		return patientList;
 	}
 
-	public void setListaPazienti(ArrayList<Patient> listaPazienti) {
-		this.listaPazienti = listaPazienti;
+	public void setPatientList(ArrayList<Patient> patientList) {
+		this.patientList = patientList;
 	}
 
-	public ArrayList<Nurse> getListaInfermieri() {
-		return listaInfermieri;
+	public ArrayList<Nurse> getNurseList() {
+		return nurseList;
 	}
 
-	public void setListaInfermieri(ArrayList<Nurse> listaInfermieri) {
-		this.listaInfermieri = listaInfermieri;
+	public void setNurseList(ArrayList<Nurse> nurseList) {
+		this.nurseList = nurseList;
 	}
 
-	public ArrayList<Doctor> getListaMedici() {
-		return listaMedici;
+	public ArrayList<Doctor> getDocList() {
+		return docList;
 	}
 
-	public void setListaMedici(ArrayList<Doctor> listaMedici) {
-		this.listaMedici = listaMedici;
+	public void setDocList(ArrayList<Doctor> docList) {
+		this.docList = docList;
 	}
 
-	public ArrayList<Primario> getListaPrimari() {
-		return listaPrimari;
+	public ArrayList<ChiefDoc> getChiefList() {
+		return chiefList;
 	}
 
-	public void setListaPrimari(ArrayList<Primario> listaPrimari) {
-		this.listaPrimari = listaPrimari;
+	public void setChiefList(ArrayList<ChiefDoc> chiefList) {
+		this.chiefList = chiefList;
 	}
 
-	public ArrayList<Prescription> getListaPrescrizioni() {
-		return listaPrescrizioni;
+	public ArrayList<Prescription> getPrescriptionList() {
+		return prescriptionList;
 	}
 
-	public void setListaPrescrizioni(ArrayList<Prescription> listaPrescrizioni) {
-		this.listaPrescrizioni = listaPrescrizioni;
+	public void setPrescriptionList(ArrayList<Prescription> prescriptionList) {
+		this.prescriptionList = prescriptionList;
 	}
 
-	public ArrayList<Medicine> getListaFarmaci() {
-		return listaFarmaci;
+	public ArrayList<Medicine> getMedicineList() {
+		return medicineList;
 	}
 
-	public void setListaFarmaci(ArrayList<Medicine> listaFarmaci) {
-		this.listaFarmaci = listaFarmaci;
+	public void setMedicineList(ArrayList<Medicine> medicineList) {
+		this.medicineList = medicineList;
 	}
 
-	public ArrayList<Subministration> getListaSomministrazioni() {
-		return listaSomministrazioni;
+	public ArrayList<Subministration> getSubList() {
+		return subList;
 	}
 
-	public void setListaSomministrazioni(ArrayList<Subministration> listaSomministrazioni) {
-		this.listaSomministrazioni = listaSomministrazioni;
+	public void setSubList(ArrayList<Subministration> subList) {
+		this.subList = subList;
 	}
 
-	public ArrayList<Observer> getListaObserver() {
-		return listaObserver;
+	public ArrayList<Observer> getObserverList() {
+		return observerList;
 	}
 
-	public void setListaObserver(ArrayList<Observer> listaObserver) {
-		this.listaObserver = listaObserver;
+	public void setObserverList(ArrayList<Observer> observerList) {
+		this.observerList = observerList;
 	}
 
-	public Map<Patient, ArrayList<VitalParameters>> getListaParametriVitali() {
-		return listaParametriVitali;
+	public Map<Patient, ArrayList<VitalParameters>> getVitalParametersList() {
+		return vitalParametersList;
 	}
 
-	public void setListaParametriVitali(Map<Patient, ArrayList<VitalParameters>> listaParametriVitali) {
-		this.listaParametriVitali = listaParametriVitali;
+	public void setVitalParametersList(Map<Patient, ArrayList<VitalParameters>> vitalParametersList) {
+		this.vitalParametersList = vitalParametersList;
 	}
 
-	public Map<Patient, ArrayList<Means>> getListaParametriVitaliMedia() {
-		return listaParametriVitaliMedia;
+	public Map<Patient, ArrayList<Means>> getMeansList() {
+		return meansList;
 	}
 
-	public void setListaParametriVitaliMedia(Map<Patient, ArrayList<Means>> listaParametriVitaliMedia) {
-		this.listaParametriVitaliMedia = listaParametriVitaliMedia;
+	public void setMeansList(Map<Patient, ArrayList<Means>> meansList) {
+		this.meansList = meansList;
 	}
 
 	public File getFile() {
@@ -478,5 +474,4 @@ public class Model {
 		this.dateFormat = dateFormat;
 	}	
 	
-	//}}
 }

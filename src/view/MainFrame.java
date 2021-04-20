@@ -320,7 +320,7 @@ public class MainFrame extends JFrame {
 		gbc.gridy = 6;
 		pannelloBottoni.add(btnPersonaleMedico, gbc);
 		
-		btnPrimario = new JButton("Primario");
+		btnPrimario = new JButton("ChiefDoc");
 		btnPrimario.setFont(fontBottoni);
 		gbc.gridx = 0;
 		gbc.gridy = 12;
