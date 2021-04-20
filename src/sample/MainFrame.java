@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class MainFrame extends Application {
@@ -13,8 +14,9 @@ public class MainFrame extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         primaryStage.setTitle("SafeCare");
-        primaryStage.setScene(new Scene(root, 553,813));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
+        primaryStage.setResizable(false);
     }
 
     public static void main(String[] args){launch(args);}
