@@ -82,9 +82,8 @@ public class SomministrazioneFarmaciFrameController {
 					rowBlock = i + 1;
 					break;
 				} else {
-					Subministration somministrazioneTmp = new Subministration(theView.getTableModelSomministrazione().getValueAt(i, j).toString(), 
-							Integer.parseInt(theView.getTableModelSomministrazione().getValueAt(i, j+1).toString()), 
-							theView.getTableModelSomministrazione().getValueAt(i, j+2).toString(), 
+					Subministration somministrazioneTmp = new Subministration(theView.getTableModelSomministrazione().getValueAt(i, j).toString(),
+							theView.getTableModelSomministrazione().getValueAt(i, j+2).toString(), Integer.parseInt(theView.getTableModelSomministrazione().getValueAt(i, j+1).toString()),
 							theView.getTabellaFarmaciSomministrazione().getValueAt(i, j+3).toString());
 					listaSomministrazioniTmp.add(somministrazioneTmp);
 					theModel.setListaSomministrazioni(listaSomministrazioniTmp);
@@ -99,9 +98,8 @@ public class SomministrazioneFarmaciFrameController {
 				
 				if(theView.getTableModelSomministrazione().getValueAt(i, j).toString().equals(new String(""))) {					
 				} else {
-					Subministration somministrazioneTmp = new Subministration(theView.getTableModelSomministrazione().getValueAt(i, j).toString(), 
-							Integer.parseInt(theView.getTableModelSomministrazione().getValueAt(i, j+1).toString()), 
-							theView.getTableModelSomministrazione().getValueAt(i, j+2).toString(), 
+					Subministration somministrazioneTmp = new Subministration(theView.getTableModelSomministrazione().getValueAt(i, j).toString(),
+							theView.getTableModelSomministrazione().getValueAt(i, j+2).toString(), Integer.parseInt(theView.getTableModelSomministrazione().getValueAt(i, j+1).toString()),
 							theView.getTabellaFarmaciSomministrazione().getValueAt(i, j+3).toString());
 					listaSomministrazioniTmp.add(somministrazioneTmp);
 					theModel.setListaSomministrazioni(listaSomministrazioniTmp);

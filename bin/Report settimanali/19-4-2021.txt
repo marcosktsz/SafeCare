@@ -29,3 +29,4 @@ REPORT SETTIMANALE dal 19/4/2021
 [19/04/2021 20:49]	Paziente: Edmondo Spellecchia[Codice Fiscale: SPLDND33A25G003T]
 		Allarme in corso:
 			IPOTERMIA - Livello 2
+REPORT SETTIMANALE dal 19 4 2021

@@ -32,7 +32,6 @@ public class Medicine {
 	}
 
 
-	//{{ Getters and Setters
 	public String getNomeFarmaco() {
 		return medId;
 	}

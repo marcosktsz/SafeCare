@@ -7,10 +7,10 @@ public class Subministration {
 	private String subDate;
 	private String nurseName;
 	
-	public Subministration(String medId, Integer doseQuantity, String string, String nurseName) {
+	public Subministration(String medId, String subDate, Integer doseQuantity, String nurseName) {
 		this.medId = medId;
 		this.doseQuantity = doseQuantity;
-		this.subDate = string;
+		this.subDate = subDate;
 		this.nurseName = nurseName;
 	}
 

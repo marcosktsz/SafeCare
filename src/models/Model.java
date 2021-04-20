@@ -273,7 +273,7 @@ public class Model {
 						String nomeFarmaco = ((Map<String, Object>)o1).get("nomeFarmaco").toString();
 						String nomeInfermiere = ((Map<String, Object>)o1).get("nomeInfermiere").toString();
 						Integer quantitaDosi = Integer.parseInt(((Map<String, Object>)o1).get("quantitaDosi").toString());
-						Subministration tmp = new Subministration(nomeFarmaco, quantitaDosi, todayDate, nomeInfermiere);
+						Subministration tmp = new Subministration(nomeFarmaco, todayDate, quantitaDosi, nomeInfermiere);
 						listaSomministrazioni.add(tmp);
 					}
 				}
