@@ -20,7 +20,7 @@ public class NuovoPazienteFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	GridBagLayout mainLayout = new GridBagLayout();
-	private static String titolo = "Nuovo Paziente";
+	private static String titolo = "Nuovo Patient";
 	Container frmContentPaneContainer = new Container();
 	private JPanel pannello = new JPanel();
 	private JLabel lblNome;

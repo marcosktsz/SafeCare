@@ -34,17 +34,17 @@ public class NuovoPazienteFrameController {
 			boolean verifica = false;
 			models.Date currentDate = new models.Date(Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.YEAR));
 			String none = "-";
-			Paziente tmp;
+			Patient tmp;
 			
 			if(theView.getTxtCodiceUnicoSanitario().length() == 0 || theView.getTxtNome().length() == 0 || theView.getTxtCognome().length() == 0) {
 				JOptionPane.showMessageDialog(null, "Campi obbligatori non completati!");
 			} else {
 				if(theView.getTxtCodiceUnicoSanitario().length() == 16) {
-					tmp = new Paziente(theView.getTxtCodiceUnicoSanitario(), theView.getTxtCognome(), theView.getTxtNome(), none, none, none, none, 
+					tmp = new Patient(theView.getTxtCodiceUnicoSanitario(), theView.getTxtCognome(), theView.getTxtNome(), none, none, none, none,
 							none, currentDate.toString(), none, "RICOVERATO");
-					for (Paziente paziente : theModel.getListaPazienti()) {
-						if(paziente.getCodiceUnivocoSanitario().equals(tmp.getCodiceUnivocoSanitario())) {
-							JOptionPane.showMessageDialog(null, "Paziente gi� esistente!");
+					for (Patient patient : theModel.getListaPazienti()) {
+						if(patient.getHealthId().equals(tmp.getHealthId())) {
+							JOptionPane.showMessageDialog(null, "Patient gi� esistente!");
 							verifica = true;
 						} else {
 							verifica = false;
@@ -54,11 +54,11 @@ public class NuovoPazienteFrameController {
 						theModel.getListaPazienti().add(tmp);
 						theModel.writeToFile(theModel.getListaPazienti());
 						mainFrame.getListModel().addElement(tmp);
-						theModel.getListaObserver().add(new Observer(tmp.getNome() + " " + tmp.getCognome()));
-						theModel.getListaParametriVitali().put(tmp, new ArrayList<ParametriVitali>());
-						theModel.getListaParametriVitaliMedia().put(tmp, new ArrayList<ParametriVitaliMedia>());
-						theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(mainFrame.getTodayDate()) + "]\tPaziente: " + tmp.getNome() + " " + tmp.getCognome() + "[Codice Fiscale: " + 
-								tmp.getCodiceUnivocoSanitario() + "] � stato RICOVERATO!", theModel.getNewReportFile());
+						theModel.getListaObserver().add(new Observer(tmp.getName() + " " + tmp.getLastName()));
+						theModel.getListaParametriVitali().put(tmp, new ArrayList<VitalParameters>());
+						theModel.getListaParametriVitaliMedia().put(tmp, new ArrayList<Means>());
+						theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(mainFrame.getTodayDate()) + "]\tPatient: " + tmp.getName() + " " + tmp.getLastName() + "[Codice Fiscale: " +
+								tmp.getHealthId() + "] � stato RICOVERATO!", theModel.getNewReportFile());
 						theView.dispose();
 					}
 				} else {

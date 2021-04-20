@@ -37,7 +37,7 @@
       <operations public="false" package="false" protected="false" private="false" static="false"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="models.ParametriVitali" project="Progetto"
+  <class id="5" language="java" name="models.VitalParameters" project="Progetto"
     file="/Progetto/src/models/ParametriVitali.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="320" y="583"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -100,7 +100,7 @@
       <operations public="false" package="false" protected="false" private="false" static="false"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="models.Paziente" project="Progetto" file="/Progetto/src/models/Paziente.java" 
+  <class id="12" language="java" name="models.Patient" project="Progetto" file="/Progetto/src/models/Paziente.java"
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1435" y="357"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -120,7 +120,7 @@
   </class>  
   <association id="14">    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="15" name="prescrizioneMedica"/>      
+      <attribute id="15" name="medicalPrescription"/>
       <multiplicity id="16" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    

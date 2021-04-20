@@ -30,7 +30,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
-import models.Paziente;
+import models.Patient;
 
 
 public class MainFrame extends JFrame {
@@ -70,8 +70,8 @@ public class MainFrame extends JFrame {
 	private JPanel pannelloListaPazienti = new JPanel();
 	private JLabel lblPazienti;
 	private JScrollPane scrollPane;
-	private DefaultListModel<Paziente> listModel;
-	private JList<Paziente> list;
+	private DefaultListModel<Patient> listModel;
+	private JList<Patient> list;
 	//}}
 	
 	//{{ PANNELLO BOTTONI
@@ -291,8 +291,8 @@ public class MainFrame extends JFrame {
 		lblPazienti.setFont(fontBottoni);
 		pannelloListaPazienti.add(lblPazienti, BorderLayout.NORTH);
 		
-		listModel = new DefaultListModel<Paziente>();
-		list = new JList<Paziente>(listModel);
+		listModel = new DefaultListModel<Patient>();
+		list = new JList<Patient>(listModel);
 		list.setFont(fontBottoni);
 		scrollPane = new JScrollPane(list);
 		list.setBackground(Color.WHITE);
@@ -601,7 +601,7 @@ public class MainFrame extends JFrame {
 		gbcInfermiere.ipadx = 0;
 		gbcInfermiere.ipady = 30;
 		
-		btnNuovoPaziente = new JButton("<html><center>Nuovo<br />Paziente</center></html>");
+		btnNuovoPaziente = new JButton("<html><center>Nuovo<br />Patient</center></html>");
 		btnNuovoPaziente.setFont(fontBottoni);
 		gbcInfermiere.gridx = 0;
 		gbcInfermiere.gridy = 1;
@@ -676,7 +676,7 @@ public class MainFrame extends JFrame {
 		gbcPrimario.ipadx = 0;
 		gbcPrimario.ipady = 30;
 		
-		btnRilascioPaziente = new JButton("Rilascia Paziente");
+		btnRilascioPaziente = new JButton("Rilascia Patient");
 		btnRilascioPaziente.setFont(fontBottoni);
 		gbcPrimario.gridx = 0;
 		gbcPrimario.gridy = 0;
@@ -808,13 +808,13 @@ public class MainFrame extends JFrame {
 	}
 
 	//{{ GETTERS AND SETTERS
-	public void setList(ArrayList<Paziente> list) {
-		for(Paziente paziente: list) {
-			this.listModel.addElement(paziente);
+	public void setList(ArrayList<Patient> list) {
+		for(Patient patient : list) {
+			this.listModel.addElement(patient);
 		}
 	}
 
-	public JList<Paziente> getList() {
+	public JList<Patient> getList() {
 		return list;
 	}
 
@@ -906,7 +906,7 @@ public class MainFrame extends JFrame {
 		return pannelloBottoniLogin;
 	}
 
-	public DefaultListModel<Paziente> getListModel() {
+	public DefaultListModel<Patient> getListModel() {
 		return listModel;
 	}
 

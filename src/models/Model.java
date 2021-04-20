@@ -20,7 +20,7 @@ public class Model {
 	File newReportFile = new File("assets//Report settimanali");
 	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 	
-	private ArrayList<Paziente> listaPazienti;
+	private ArrayList<Patient> listaPazienti;
 	private ArrayList<Nurse> listaInfermieri;
 	private ArrayList<Doctor> listaMedici;
 	private ArrayList<Primario> listaPrimari;
@@ -28,8 +28,8 @@ public class Model {
 	private ArrayList<Subministration> listaSomministrazioni;
 	private ArrayList<Medicine> listaFarmaci;
 	private ArrayList<Observer> listaObserver = new ArrayList<Observer>();
-	private Map<Paziente, ArrayList<ParametriVitali>> listaParametriVitali = new HashMap<Paziente, ArrayList<ParametriVitali>>();
-	private Map<Paziente, ArrayList<ParametriVitaliMedia>> listaParametriVitaliMedia = new HashMap<Paziente, ArrayList<ParametriVitaliMedia>>();
+	private Map<Patient, ArrayList<VitalParameters>> listaParametriVitali = new HashMap<Patient, ArrayList<VitalParameters>>();
+	private Map<Patient, ArrayList<Means>> listaParametriVitaliMedia = new HashMap<Patient, ArrayList<Means>>();
 	 
 	private Model() {
 		//empty
@@ -46,7 +46,7 @@ public class Model {
 	public void writeToFile(ArrayList<?> src) {
 		String nomeToJson = "";
 		for (Object object : src) {
-			if(object instanceof Paziente) {
+			if(object instanceof Patient) {
 				file = new File("assets//filePazienti.json");
 				nomeToJson = "Pazienti";
 				break;
@@ -114,11 +114,11 @@ public class Model {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void writeParametriVitaliToFile(String nomeFile, ArrayList<ParametriVitali> src) {
+	public void writeParametriVitaliToFile(String nomeFile, ArrayList<VitalParameters> src) {
 		try (FileWriter fileWriter = new FileWriter(new File("assets//Parametri Vitali//" + nomeFile + ".json"))) {
 			org.json.JSONObject jsonObject = new org.json.JSONObject();
 			JSONArray jsonArray = new JSONArray();
-			for (ParametriVitali parametriVitali : src) {
+			for (VitalParameters parametriVitali : src) {
 				jsonArray.add(parametriVitali);
 			}
 			jsonObject.put("parametri vitali", jsonArray);
@@ -130,7 +130,7 @@ public class Model {
 	
 	@SuppressWarnings("unchecked")
 	public void readPazientiFromFile() {
-		listaPazienti = new ArrayList<Paziente>();
+		listaPazienti = new ArrayList<Patient>();
 		JSONParser jsonParser = new JSONParser();
 		try {
 			Object obj = jsonParser.parse(new FileReader("assets//filePazienti.json"));
@@ -147,8 +147,8 @@ public class Model {
 					String dataRicovero = ((Map<String, Object>)o1).get("dataRicovero").toString();
 					String dataRilascio = ((Map<String, Object>)o1).get("dataRilascio").toString();
 					String statoPaziente = ((Map<String, Object>)o1).get("statoPaziente").toString();
-					Paziente paziente = new Paziente(codiceUnivocoSanitario, cognome, nome, luogoDiNascita, dottore, diagnosi, salone, dataDiNascita, dataRicovero, dataRilascio, statoPaziente);
-					listaPazienti.add(paziente);
+					Patient patient = new Patient(codiceUnivocoSanitario, cognome, nome, luogoDiNascita, dottore, diagnosi, salone, dataDiNascita, dataRicovero, dataRilascio, statoPaziente);
+					listaPazienti.add(patient);
 				}
 			}
 		} catch (Exception e) {
@@ -283,7 +283,7 @@ public class Model {
 		}
 	}
 	
-	public void writeCartellaClinica(Paziente paziente, File file) throws IOException {
+	public void writeCartellaClinica(Patient patient, File file) throws IOException {
 		FileWriter fw = new FileWriter(file);
         BufferedWriter bw = new BufferedWriter(fw);
         
@@ -291,19 +291,19 @@ public class Model {
         bw.close();
 	}
 	
-	public void removeObserver(Paziente paziente) {
+	public void removeObserver(Patient patient) {
 		int index = 0;
 		for (Observer observer : listaObserver) {
-			if(observer.getNomeObserver().equals(paziente.getNome() + " " + paziente.getCognome())) {
+			if(observer.getObserverName().equals(patient.getName() + " " + patient.getLastName())) {
 				index = listaObserver.indexOf(observer);
 			}
 		}
 		listaObserver.remove(index);
 	}
 	
-	public void removeParametriVitali(Paziente paziente) {
-		listaParametriVitali.remove(paziente);
-		listaParametriVitaliMedia.remove(paziente);
+	public void removeParametriVitali(Patient patient) {
+		listaParametriVitali.remove(patient);
+		listaParametriVitaliMedia.remove(patient);
 	}
 	
 	@SuppressWarnings("unused")
@@ -366,11 +366,11 @@ public class Model {
 		Model.theModel = theModel;
 	}
 
-	public ArrayList<Paziente> getListaPazienti() {
+	public ArrayList<Patient> getListaPazienti() {
 		return listaPazienti;
 	}
 
-	public void setListaPazienti(ArrayList<Paziente> listaPazienti) {
+	public void setListaPazienti(ArrayList<Patient> listaPazienti) {
 		this.listaPazienti = listaPazienti;
 	}
 
@@ -430,19 +430,19 @@ public class Model {
 		this.listaObserver = listaObserver;
 	}
 
-	public Map<Paziente, ArrayList<ParametriVitali>> getListaParametriVitali() {
+	public Map<Patient, ArrayList<VitalParameters>> getListaParametriVitali() {
 		return listaParametriVitali;
 	}
 
-	public void setListaParametriVitali(Map<Paziente, ArrayList<ParametriVitali>> listaParametriVitali) {
+	public void setListaParametriVitali(Map<Patient, ArrayList<VitalParameters>> listaParametriVitali) {
 		this.listaParametriVitali = listaParametriVitali;
 	}
 
-	public Map<Paziente, ArrayList<ParametriVitaliMedia>> getListaParametriVitaliMedia() {
+	public Map<Patient, ArrayList<Means>> getListaParametriVitaliMedia() {
 		return listaParametriVitaliMedia;
 	}
 
-	public void setListaParametriVitaliMedia(Map<Paziente, ArrayList<ParametriVitaliMedia>> listaParametriVitaliMedia) {
+	public void setListaParametriVitaliMedia(Map<Patient, ArrayList<Means>> listaParametriVitaliMedia) {
 		this.listaParametriVitaliMedia = listaParametriVitaliMedia;
 	}
 

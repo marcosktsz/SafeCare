@@ -3,38 +3,38 @@ package models;
 import java.util.ArrayList;
 
 public class Prescription {
-	private ArrayList<Medicine> prescrizioneMedica;
-	private String dataPrescrizione;
+	private ArrayList<Medicine> medicalPrescription;
+	private String prescriptionDate;
 	
-	public Prescription(ArrayList<Medicine> prescrizioneMedica, String dataPrescrizione) {
-		this.prescrizioneMedica = prescrizioneMedica;
-		this.dataPrescrizione = dataPrescrizione;
+	public Prescription(ArrayList<Medicine> medicalPrescription, String prescriptionDate) {
+		this.medicalPrescription = medicalPrescription;
+		this.prescriptionDate = prescriptionDate;
 	}
 	
 	
 
 	@Override
 	public String toString() {
-		return prescrizioneMedica.toString();
+		return medicalPrescription.toString();
 	}
 
 
 
 	//{{ Getters and Setters
-	public ArrayList<Medicine> getPrescrizioneMedica() {
-		return prescrizioneMedica;
+	public ArrayList<Medicine> getMedicalPrescription() {
+		return medicalPrescription;
 	}
 
-	public void setPrescrizioneMedica(ArrayList<Medicine> prescrizioneMedica) {
-		this.prescrizioneMedica = prescrizioneMedica;
+	public void setMedicalPrescription(ArrayList<Medicine> medicalPrescription) {
+		this.medicalPrescription = medicalPrescription;
 	}
 
-	public String getDataPrescrizione() {
-		return dataPrescrizione;
+	public String getPrescriptionDate() {
+		return prescriptionDate;
 	}
 
-	public void setDataPrescrizione(String dataPrescrizione) {
-		this.dataPrescrizione = dataPrescrizione;
+	public void setPrescriptionDate(String prescriptionDate) {
+		this.prescriptionDate = prescriptionDate;
 	}	
 	//}}	
 }

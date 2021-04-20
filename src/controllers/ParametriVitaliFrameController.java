@@ -45,33 +45,33 @@ public class ParametriVitaliFrameController {
 						for (Observer observer: theModel.getListaObserver()) {
 							sbp = (double) (rand.nextGaussian() * 4) + 105;				
 							dbp = (double) (rand.nextGaussian() * 3) + 70;
-							observer.setPressioneSistolica(sbp);
-							observer.setPressioneDiastolica(dbp);
-							observer.setSommaSBP(observer.getSommaSBP() + sbp);
-							observer.setSommaDBP(observer.getSommaDBP() + dbp);
+							observer.setSysPressure(sbp);
+							observer.setDiasPressure(dbp);
+							observer.setSBPSum(observer.getSBPSum() + sbp);
+							observer.setDBPSum(observer.getDBPSum() + dbp);
 							observer.setCounterSBPeDBP(observer.getCounterSBPeDBP() + 1);
 							
 							//ipotensione
-							if(observer.getPressioneSistolica() <= 90 && observer.getPressioneDiastolica() <= 60) {
-								for (Paziente paziente : theModel.getListaPazienti()) {
-									if(observer.getNomeObserver().equals(paziente.getNome() + " " + paziente.getCognome())) {										
-										String[] tmp = {paziente.getNome(), paziente.getCognome(), paziente.getSalone(), "IPOTENSIONE", new Integer(2).toString()};
+							if(observer.getSysPressure() <= 90 && observer.getDiasPressure() <= 60) {
+								for (Patient patient : theModel.getListaPazienti()) {
+									if(observer.getObserverName().equals(patient.getName() + " " + patient.getLastName())) {
+										String[] tmp = {patient.getName(), patient.getLastName(), patient.getRoom(), "IPOTENSIONE", new Integer(2).toString()};
 										mainFrame.getTableModelAllarmi().addRow(tmp);
-										theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(mainFrame.getTodayDate()) + "]\tPaziente: " + paziente.getNome() + " " + 
-												paziente.getCognome() + "[Codice Fiscale: " + paziente.getCodiceUnivocoSanitario() + "]" +
+										theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(mainFrame.getTodayDate()) + "]\tPatient: " + patient.getName() + " " +
+												patient.getLastName() + "[Codice Fiscale: " + patient.getHealthId() + "]" +
 												"\n\t\tAllarme in corso:\n\t\t\t" + "IPOTENSIONE - Livello 2", theModel.getNewReportFile());
 									}
 								}
 							}
 							
 							//ipertensione
-							if(observer.getPressioneSistolica() >= 130 && observer.getPressioneDiastolica() >= 90) {
-								for (Paziente paziente : theModel.getListaPazienti()) {
-									if(observer.getNomeObserver().equals(paziente.getNome() + " " + paziente.getCognome())) {
-										String[] tmp = {paziente.getNome(), paziente.getCognome(), paziente.getSalone(), "IPERTENSIONE", new Integer(2).toString()};
+							if(observer.getSysPressure() >= 130 && observer.getDiasPressure() >= 90) {
+								for (Patient patient : theModel.getListaPazienti()) {
+									if(observer.getObserverName().equals(patient.getName() + " " + patient.getLastName())) {
+										String[] tmp = {patient.getName(), patient.getLastName(), patient.getRoom(), "IPERTENSIONE", new Integer(2).toString()};
 										mainFrame.getTableModelAllarmi().addRow(tmp);
-										theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(mainFrame.getTodayDate()) + "]\tPaziente: " + paziente.getNome() + " " + 
-												paziente.getCognome() + "[Codice Fiscale: " + paziente.getCodiceUnivocoSanitario() + "]" +
+										theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(mainFrame.getTodayDate()) + "]\tPatient: " + patient.getName() + " " +
+												patient.getLastName() + "[Codice Fiscale: " + patient.getHealthId() + "]" +
 												"\n\t\tAllarme in corso:\n\t\t\t" + "IPERTENSIONE - Livello 2", theModel.getNewReportFile());
 									}
 								}
@@ -87,44 +87,44 @@ public class ParametriVitaliFrameController {
 						
 						for (Observer observer: theModel.getListaObserver()) {
 							fc = (double) (rand.nextGaussian() * 3) + 85;	
-							observer.setFrequenzaCardiaca(fc);
-							observer.setSommaFC(observer.getSommaFC() + fc);
-							observer.setCounterFC(observer.getCounterFC() + 1);
+							observer.setOxSaturation(fc);
+							observer.setOxSum(observer.getOxSum() + fc);
+							observer.setOxCounter(observer.getOxCounter() + 1);
 							
 							//tachicardia
-							if(observer.getFrequenzaCardiaca() >= 100) {
-								for (Paziente paziente : theModel.getListaPazienti()) {
-									if(observer.getNomeObserver().equals(paziente.getNome() + " " + paziente.getCognome())) {
-										String[] tmp = {paziente.getNome(), paziente.getCognome(), paziente.getSalone(), "TACHICARDIA", new Integer(1).toString()};
+							if(observer.getOxSaturation() >= 100) {
+								for (Patient patient : theModel.getListaPazienti()) {
+									if(observer.getObserverName().equals(patient.getName() + " " + patient.getLastName())) {
+										String[] tmp = {patient.getName(), patient.getLastName(), patient.getRoom(), "TACHICARDIA", new Integer(1).toString()};
 										mainFrame.getTableModelAllarmi().addRow(tmp);
-										theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(mainFrame.getTodayDate()) + "]\tPaziente: " + paziente.getNome() + " " + 
-												paziente.getCognome() + "[Codice Fiscale: " + paziente.getCodiceUnivocoSanitario() + "]" +
+										theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(mainFrame.getTodayDate()) + "]\tPatient: " + patient.getName() + " " +
+												patient.getLastName() + "[Codice Fiscale: " + patient.getHealthId() + "]" +
 												"\n\t\tAllarme in corso:\n\t\t\t" + "TACHICARDIA - Livello 1", theModel.getNewReportFile());
 									}
 								}
 							}
 							
 							//brachicardia
-							if(observer.getFrequenzaCardiaca() <= 60) {
-								for (Paziente paziente : theModel.getListaPazienti()) {
-									if(observer.getNomeObserver().equals(paziente.getNome() + " " + paziente.getCognome())) {
-										String[] tmp = {paziente.getNome(), paziente.getCognome(), paziente.getSalone(), "BRACHICARDIA", new Integer(1).toString()};
+							if(observer.getOxSaturation() <= 60) {
+								for (Patient patient : theModel.getListaPazienti()) {
+									if(observer.getObserverName().equals(patient.getName() + " " + patient.getLastName())) {
+										String[] tmp = {patient.getName(), patient.getLastName(), patient.getRoom(), "BRACHICARDIA", new Integer(1).toString()};
 										mainFrame.getTableModelAllarmi().addRow(tmp);
-										theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(mainFrame.getTodayDate()) + "]\tPaziente: " + paziente.getNome() + " " + 
-												paziente.getCognome() + "[Codice Fiscale: " + paziente.getCodiceUnivocoSanitario() + "]" +
+										theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(mainFrame.getTodayDate()) + "]\tPatient: " + patient.getName() + " " +
+												patient.getLastName() + "[Codice Fiscale: " + patient.getHealthId() + "]" +
 												"\n\t\tAllarme in corso:\n\t\t\t" + "BRACHICARDIA - Livello 1", theModel.getNewReportFile());
 									}
 								}
 							}
 							
 							//fibrilazione ventricolare
-							if(observer.getFrequenzaCardiaca() >= 140) {
-								for (Paziente paziente : theModel.getListaPazienti()) {
-									if(observer.getNomeObserver().equals(paziente.getNome() + " " + paziente.getCognome())) {
-										String[] tmp = {paziente.getNome(), paziente.getCognome(), paziente.getSalone(), "FLUTTER", new Integer(3).toString()};
+							if(observer.getOxSaturation() >= 140) {
+								for (Patient patient : theModel.getListaPazienti()) {
+									if(observer.getObserverName().equals(patient.getName() + " " + patient.getLastName())) {
+										String[] tmp = {patient.getName(), patient.getLastName(), patient.getRoom(), "FLUTTER", new Integer(3).toString()};
 										mainFrame.getTableModelAllarmi().addRow(tmp);
-										theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(mainFrame.getTodayDate()) + "]\tPaziente: " + paziente.getNome() + " " + 
-												paziente.getCognome() + "[Codice Fiscale: " + paziente.getCodiceUnivocoSanitario() + "]" +
+										theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(mainFrame.getTodayDate()) + "]\tPatient: " + patient.getName() + " " +
+												patient.getLastName() + "[Codice Fiscale: " + patient.getHealthId() + "]" +
 												"\n\t\tAllarme in corso:\n\t\t\t" + "FIBRILAZIONE VENTRICOLARE - Livello 3", theModel.getNewReportFile());
 									}
 								}
@@ -141,31 +141,31 @@ public class ParametriVitaliFrameController {
 						
 						for (Observer observer: theModel.getListaObserver()) {
 							tc = (double) (rand.nextGaussian() * 0.2) + 37;
-							observer.setTemperaturaCorporea(tc);
-							observer.setSommaTC(observer.getSommaTC() + tc);
-							observer.setCounterTC(observer.getCounterTC() + 1);
+							observer.setBodyTemp(tc);
+							observer.setBtSum(observer.getBtSum() + tc);
+							observer.setBtCounter(observer.getBtCounter() + 1);
 							
 							//ipotermia
-							if(observer.getTemperaturaCorporea() <= 36.5) {
-								for (Paziente paziente : theModel.getListaPazienti()) {
-									if(observer.getNomeObserver().equals(paziente.getNome() + " " + paziente.getCognome())) {
-										String[] tmp = {paziente.getNome(), paziente.getCognome(), paziente.getSalone(), "IPOTERMIA", new Integer(2).toString()};
+							if(observer.getBodyTemp() <= 36.5) {
+								for (Patient patient : theModel.getListaPazienti()) {
+									if(observer.getObserverName().equals(patient.getName() + " " + patient.getLastName())) {
+										String[] tmp = {patient.getName(), patient.getLastName(), patient.getRoom(), "IPOTERMIA", new Integer(2).toString()};
 										mainFrame.getTableModelAllarmi().addRow(tmp);
-										theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(mainFrame.getTodayDate()) + "]\tPaziente: " + paziente.getNome() + " " + 
-												paziente.getCognome() + "[Codice Fiscale: " + paziente.getCodiceUnivocoSanitario() + "]" +
+										theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(mainFrame.getTodayDate()) + "]\tPatient: " + patient.getName() + " " +
+												patient.getLastName() + "[Codice Fiscale: " + patient.getHealthId() + "]" +
 												"\n\t\tAllarme in corso:\n\t\t\t" + "IPOTERMIA - Livello 2", theModel.getNewReportFile());
 									}
 								}
 							}
 							
 							//ipetermia
-							if(observer.getTemperaturaCorporea() >= 37.5) {
-								for (Paziente paziente : theModel.getListaPazienti()) {
-									if(observer.getNomeObserver().equals(paziente.getNome() + " " + paziente.getCognome())) {
-										String[] tmp = {paziente.getNome(), paziente.getCognome(), paziente.getSalone(), "IPETERMIA", new Integer(2).toString()};
+							if(observer.getBodyTemp() >= 37.5) {
+								for (Patient patient : theModel.getListaPazienti()) {
+									if(observer.getObserverName().equals(patient.getName() + " " + patient.getLastName())) {
+										String[] tmp = {patient.getName(), patient.getLastName(), patient.getRoom(), "IPETERMIA", new Integer(2).toString()};
 										mainFrame.getTableModelAllarmi().addRow(tmp);
-										theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(mainFrame.getTodayDate()) + "]\tPaziente: " + paziente.getNome() + " " + 
-												paziente.getCognome() + "[Codice Fiscale: " + paziente.getCodiceUnivocoSanitario() + "]" +
+										theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(mainFrame.getTodayDate()) + "]\tPatient: " + patient.getName() + " " +
+												patient.getLastName() + "[Codice Fiscale: " + patient.getHealthId() + "]" +
 												"\n\t\tAllarme in corso:\n\t\t\t" + "IPETERMIA - Livello 2", theModel.getNewReportFile());
 									}
 								}
@@ -185,23 +185,23 @@ public class ParametriVitaliFrameController {
 						dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 						
 						//salvo i parametri
-						for (Paziente paziente : theModel.getListaParametriVitali().keySet()) {
+						for (Patient patient : theModel.getListaParametriVitali().keySet()) {
 							for (Observer observer : theModel.getListaObserver()) {
-								if(observer.getNomeObserver().equals(paziente.getNome() + " " + paziente.getCognome())) {
-									theModel.getListaParametriVitali().get(paziente).add(new ParametriVitali(sbp, dbp, fc, tc, dateFormat.format(date)));
-									theModel.writeParametriVitaliToFile(observer.getNomeObserver(), theModel.getListaParametriVitali().get(paziente));
+								if(observer.getObserverName().equals(patient.getName() + " " + patient.getLastName())) {
+									theModel.getListaParametriVitali().get(patient).add(new VitalParameters(sbp, dbp, fc, tc, dateFormat.format(date)));
+									theModel.writeParametriVitaliToFile(observer.getObserverName(), theModel.getListaParametriVitali().get(patient));
 								}
 							}
 						}
 						
 						//faccio le medie dei parametri
-						for (Paziente paziente : theModel.getListaParametriVitaliMedia().keySet()) {
+						for (Patient patient : theModel.getListaParametriVitaliMedia().keySet()) {
 							for (Observer observer : theModel.getListaObserver()) {
-								if(observer.getNomeObserver().equals(paziente.getNome() + " " + paziente.getCognome())) {
-									theModel.getListaParametriVitaliMedia().get(paziente).add(new ParametriVitaliMedia(observer.getSommaSBP()/observer.getCounterSBPeDBP(), 
-											observer.getSommaDBP()/observer.getCounterSBPeDBP(), 
-											observer.getSommaFC()/observer.getCounterFC(), 
-											observer.getSommaTC()/observer.getCounterTC()));
+								if(observer.getObserverName().equals(patient.getName() + " " + patient.getLastName())) {
+									theModel.getListaParametriVitaliMedia().get(patient).add(new Means(observer.getSBPSum()/observer.getCounterSBPeDBP(),
+											observer.getDBPSum()/observer.getCounterSBPeDBP(),
+											observer.getOxSum()/observer.getOxCounter(),
+											observer.getBtSum()/observer.getBtCounter()));
 								}
 							}
 						}

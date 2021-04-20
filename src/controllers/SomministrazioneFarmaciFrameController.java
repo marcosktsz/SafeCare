@@ -3,11 +3,9 @@ package controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import models.Medicine;
-import models.Model;
-import models.Paziente;
-import models.Prescription;
-import models.Subministration;
+
+import models.*;
+import models.Patient;
 import view.MainFrame;
 import view.SomministrazioneFarmaciFrame;
 
@@ -25,8 +23,8 @@ public class SomministrazioneFarmaciFrameController {
 		
 		//{{ TABELLA PRESCRIZIONI
 		Prescription lastPrescrizione = theModel.getListaPrescrizioni().get(theModel.getListaPrescrizioni().size() - 1);
-		theView.getTxtDataPrescrizione().setText(lastPrescrizione.getDataPrescrizione());
-			for (Medicine farmaco : lastPrescrizione.getPrescrizioneMedica()) {	
+		theView.getTxtDataPrescrizione().setText(lastPrescrizione.getPrescriptionDate());
+			for (Medicine farmaco : lastPrescrizione.getMedicalPrescription()) {
 				String[] tmpPrescrizione = {farmaco.getNomeFarmaco(), farmaco.getDurataTerapia().toString(), farmaco.getNrDosiGiornaliere().toString(), farmaco.getQuantitaDiFarmacoPerDose().toString()};
 				String[] tmpSomministrazione = {farmaco.getNomeFarmaco(), "", theView.getDateFormat().format(theView.getTodayDate()), mainFrame.getLblNomePersonale().getText()};
 				theView.getTableModelPrescrizione().addRow(tmpPrescrizione);
@@ -37,11 +35,11 @@ public class SomministrazioneFarmaciFrameController {
 			theView.getTableModelSomministrazione().addRow(none);
 				
 		theModel.readPazientiFromFile();
-			for (Paziente paziente : theModel.getListaPazienti()) {
-				if(paziente.getCodiceUnivocoSanitario().equals(mainFrame.getList().getSelectedValue().getCodiceUnivocoSanitario())) {
-					theView.getLblTxtNomePrescrizione().setText(paziente.getNome());
-					theView.getLblTxtCognomePrescrizione().setText(paziente.getCognome());
-					theView.getLblTxtDottorePrescrizione().setText(paziente.getDottore());
+			for (Patient patient : theModel.getListaPazienti()) {
+				if(patient.getHealthId().equals(mainFrame.getList().getSelectedValue().getHealthId())) {
+					theView.getLblTxtNomePrescrizione().setText(patient.getName());
+					theView.getLblTxtCognomePrescrizione().setText(patient.getLastName());
+					theView.getLblTxtDottorePrescrizione().setText(patient.getDoc());
 				}
 			}	
 		//}}
@@ -89,8 +87,8 @@ public class SomministrazioneFarmaciFrameController {
 					theModel.setListaSomministrazioni(listaSomministrazioniTmp);
 				}
 			}
-			theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(mainFrame.getTodayDate()) + "]\tPaziente: " + mainFrame.getList().getSelectedValue().getNome() + " " + 
-					mainFrame.getList().getSelectedValue().getCognome() + "[Codice Fiscale: " + mainFrame.getList().getSelectedValue().getCodiceUnivocoSanitario() + "]" +
+			theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(mainFrame.getTodayDate()) + "]\tPatient: " + mainFrame.getList().getSelectedValue().getName() + " " +
+					mainFrame.getList().getSelectedValue().getLastName() + "[Codice Fiscale: " + mainFrame.getList().getSelectedValue().getHealthId() + "]" +
 					"\n\t\tSomministrazione farmaci:\n\t\t\t" + listaSomministrazioniTmp.toString(), theModel.getNewReportFile());
 			
 			for(int i = rowBlock; i < theView.getTableModelSomministrazione().getRowCount(); i++) {

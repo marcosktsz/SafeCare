@@ -70,11 +70,11 @@ public class MainFrameController {
 		this.theView.addButtonAllarmiListener(new ButtonAllarmiListener());
 		this.theView.addButtonStampaReportListener(new ButtonStampaReportListener());
 		
-		for (Paziente paziente: theModel.getListaPazienti()) {
-			if(paziente.getStatoPaziente().equals(new String("RICOVERATO"))) {
-				theModel.getListaObserver().add(new Observer(paziente.getNome() + " " + paziente.getCognome()));
-				theModel.getListaParametriVitali().put(paziente, new ArrayList<ParametriVitali>());
-				theModel.getListaParametriVitaliMedia().put(paziente, new ArrayList<ParametriVitaliMedia>());
+		for (Patient patient : theModel.getListaPazienti()) {
+			if(patient.getPatientState().equals(new String("RICOVERATO"))) {
+				theModel.getListaObserver().add(new Observer(patient.getName() + " " + patient.getLastName()));
+				theModel.getListaParametriVitali().put(patient, new ArrayList<VitalParameters>());
+				theModel.getListaParametriVitaliMedia().put(patient, new ArrayList<Means>());
 			}
 		}
 		
@@ -102,14 +102,14 @@ public class MainFrameController {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			for (Paziente paziente : theModel.getListaPazienti()) {
-				if(theView.getList().getSelectedValue().equals(paziente)) {
+			for (Patient patient : theModel.getListaPazienti()) {
+				if(theView.getList().getSelectedValue().equals(patient)) {
 					if(timing) {
 						timing = false;
 						timer2.cancel();
 					}
-					if(paziente.getStatoPaziente().equals(new String("RICOVERATO"))) {
-						theView.setLblStatoPaziente(paziente.getStatoPaziente());
+					if(patient.getPatientState().equals(new String("RICOVERATO"))) {
+						theView.setLblStatoPaziente(patient.getPatientState());
 						theView.getLblStatoPaziente().setForeground(new Color(211, 11, 11));
 						theView.getBtnModificaDatiInfermiere().setEnabled(true);
 						theView.getBtnSomministraFarmaci().setEnabled(true);
@@ -123,50 +123,50 @@ public class MainFrameController {
 						theView.getBtnVisualizzaPrescrizionePrimario().setEnabled(true);
 						theView.getBtnVisualizzaParametriVitaliPrimario().setEnabled(true);
 						
-						//metto a 0 i parametri se il paziente ? RICOVERATO
-						for (Paziente paziente2 : theModel.getListaParametriVitaliMedia().keySet()) {
-							if(paziente.equals(paziente2)) {
-								if(theModel.getListaParametriVitaliMedia().get(paziente2).isEmpty()) {
+						//metto a 0 i parametri se il patient ? RICOVERATO
+						for (Patient patient2 : theModel.getListaParametriVitaliMedia().keySet()) {
+							if(patient.equals(patient2)) {
+								if(theModel.getListaParametriVitaliMedia().get(patient2).isEmpty()) {
 									theView.getTxtPressioneSistolica().setText(new Integer(0).toString());
 									theView.getTxtPressioneDiastolica().setText(new Integer(0).toString());
 									theView.getTxtFrequenzaCardiaca().setText(new Integer(0).toString());
 									theView.getTxtTemperaturaCorporea().setText(new Integer(0).toString());
 								} else {
-									theView.getTxtPressioneSistolica().setText(df.format(theModel.getListaParametriVitaliMedia().get(paziente2).get(theModel.getListaParametriVitaliMedia().get(paziente2).size() - 1).getMediaSBP()).toString());
-									theView.getTxtPressioneDiastolica().setText(df.format(theModel.getListaParametriVitaliMedia().get(paziente2).get(theModel.getListaParametriVitaliMedia().get(paziente2).size() - 1).getMediaDBP()).toString());
-									theView.getTxtFrequenzaCardiaca().setText(df.format(theModel.getListaParametriVitaliMedia().get(paziente2).get(theModel.getListaParametriVitaliMedia().get(paziente2).size() - 1).getMediaFC()).toString());
-									theView.getTxtTemperaturaCorporea().setText(df.format(theModel.getListaParametriVitaliMedia().get(paziente2).get(theModel.getListaParametriVitaliMedia().get(paziente2).size() - 1).getMediaTC()).toString());
+									theView.getTxtPressioneSistolica().setText(df.format(theModel.getListaParametriVitaliMedia().get(patient2).get(theModel.getListaParametriVitaliMedia().get(patient2).size() - 1).getSBPMean()).toString());
+									theView.getTxtPressioneDiastolica().setText(df.format(theModel.getListaParametriVitaliMedia().get(patient2).get(theModel.getListaParametriVitaliMedia().get(patient2).size() - 1).getDBPMean()).toString());
+									theView.getTxtFrequenzaCardiaca().setText(df.format(theModel.getListaParametriVitaliMedia().get(patient2).get(theModel.getListaParametriVitaliMedia().get(patient2).size() - 1).getOxMean()).toString());
+									theView.getTxtTemperaturaCorporea().setText(df.format(theModel.getListaParametriVitaliMedia().get(patient2).get(theModel.getListaParametriVitaliMedia().get(patient2).size() - 1).getBtMean()).toString());
 								}
 							}
 						}						
 						
-						//timer che aggiorna le medie dei parametri per ogni paziente
+						//timer che aggiorna le medie dei parametri per ogni patient
 						timer2 = new Timer();
 						timer2.schedule(new TimerTask() {
 								
 							@Override
 							public void run() {
 								timing = true;
-								for (Paziente paziente2 : theModel.getListaParametriVitaliMedia().keySet()) {
-									if(paziente.equals(paziente2)) {
-										if(theModel.getListaParametriVitaliMedia().get(paziente2).isEmpty()) {
+								for (Patient patient2 : theModel.getListaParametriVitaliMedia().keySet()) {
+									if(patient.equals(patient2)) {
+										if(theModel.getListaParametriVitaliMedia().get(patient2).isEmpty()) {
 											theView.getTxtPressioneSistolica().setText(new Integer(0).toString());
 											theView.getTxtPressioneDiastolica().setText(new Integer(0).toString());
 											theView.getTxtFrequenzaCardiaca().setText(new Integer(0).toString());
 											theView.getTxtTemperaturaCorporea().setText(new Integer(0).toString());
 										} else {
-											theView.getTxtPressioneSistolica().setText(df.format(theModel.getListaParametriVitaliMedia().get(paziente2).get(theModel.getListaParametriVitaliMedia().get(paziente2).size() - 1).getMediaSBP()).toString());
-											theView.getTxtPressioneDiastolica().setText(df.format(theModel.getListaParametriVitaliMedia().get(paziente2).get(theModel.getListaParametriVitaliMedia().get(paziente2).size() - 1).getMediaDBP()).toString());
-											theView.getTxtFrequenzaCardiaca().setText(df.format(theModel.getListaParametriVitaliMedia().get(paziente2).get(theModel.getListaParametriVitaliMedia().get(paziente2).size() - 1).getMediaFC()).toString());
-											theView.getTxtTemperaturaCorporea().setText(df.format(theModel.getListaParametriVitaliMedia().get(paziente2).get(theModel.getListaParametriVitaliMedia().get(paziente2).size() - 1).getMediaTC()).toString());
+											theView.getTxtPressioneSistolica().setText(df.format(theModel.getListaParametriVitaliMedia().get(patient2).get(theModel.getListaParametriVitaliMedia().get(patient2).size() - 1).getSBPMean()).toString());
+											theView.getTxtPressioneDiastolica().setText(df.format(theModel.getListaParametriVitaliMedia().get(patient2).get(theModel.getListaParametriVitaliMedia().get(patient2).size() - 1).getDBPMean()).toString());
+											theView.getTxtFrequenzaCardiaca().setText(df.format(theModel.getListaParametriVitaliMedia().get(patient2).get(theModel.getListaParametriVitaliMedia().get(patient2).size() - 1).getOxMean()).toString());
+											theView.getTxtTemperaturaCorporea().setText(df.format(theModel.getListaParametriVitaliMedia().get(patient2).get(theModel.getListaParametriVitaliMedia().get(patient2).size() - 1).getBtMean()).toString());
 										}
 									}
 								}
 							}
 						}, 1000, 5000);
 						
-					} else if(paziente.getStatoPaziente().equals(new String("RILASCIATO"))) {
-						theView.setLblStatoPaziente(paziente.getStatoPaziente());
+					} else if(patient.getPatientState().equals(new String("RILASCIATO"))) {
+						theView.setLblStatoPaziente(patient.getPatientState());
 						theView.getLblStatoPaziente().setForeground(new Color(24, 158, 24));
 						theView.getBtnModificaDatiInfermiere().setEnabled(false);
 						theView.getBtnSomministraFarmaci().setEnabled(false);
@@ -184,16 +184,16 @@ public class MainFrameController {
 						theView.getTxtFrequenzaCardiaca().setText("-");
 						theView.getTxtTemperaturaCorporea().setText("-");
 					}
-					theView.setTxtCodiceUnicoSanitario(paziente.getCodiceUnivocoSanitario());
-					theView.setTxtNome(paziente.getNome());
-					theView.setTxtCognome(paziente.getCognome());
-					theView.setTxtLuogoDiNascita(paziente.getLuogoDiNascita());
-					theView.setTxtDataDiNascita(paziente.getDataDiNascita());
-					theView.setTxtDataRicovero(paziente.getDataRicovero());
-					theView.setTxtDataRilascio(paziente.getDataRilascio());
-					theView.setTxtSalone(paziente.getSalone());
-					theView.setTxtDottore(paziente.getDottore());
-					theView.setTxtDiagnosi(paziente.getDiagnosi());
+					theView.setTxtCodiceUnicoSanitario(patient.getHealthId());
+					theView.setTxtNome(patient.getName());
+					theView.setTxtCognome(patient.getLastName());
+					theView.setTxtLuogoDiNascita(patient.getBirthPlace());
+					theView.setTxtDataDiNascita(patient.getBirthDate());
+					theView.setTxtDataRicovero(patient.getHospDate());
+					theView.setTxtDataRilascio(patient.getReleaseDate());
+					theView.setTxtSalone(patient.getRoom());
+					theView.setTxtDottore(patient.getDoc());
+					theView.setTxtDiagnosi(patient.getDiagnosis());
 					
 				}
 			}
@@ -478,20 +478,20 @@ public class MainFrameController {
 						theView.getBtnModificaDatiMedico().getText().equals(new String("Salva")) &&
 						theView.getBtnModificaDatiPrimario().getText().equals(new String("Salva"))) {
 					if(checkDateValidation(theView.getTxtDataDiNascita().getText())) {
-						for (Paziente paziente : theModel.getListaPazienti()) {
-							if(theView.getList().getSelectedValue().getNome().equals(paziente.getNome()) &&
-									theView.getList().getSelectedValue().getCognome().equals(paziente.getCognome())) {
-								paziente.setCodiceUnivocoSanitario(theView.getTxtCodiceUnicoSanitario().getText());
-								paziente.setNome(theView.getTxtNome().getText());
-								paziente.setCognome(theView.getTxtCognome().getText());
-								paziente.setDataDiNascita(theView.getTxtDataDiNascita().getText());
-								paziente.setLuogoDiNascita(theView.getTxtLuogoDiNascita().getText());
-								paziente.setDiagnosi(theView.getTxtDiagnosi().getText());
-								paziente.setDataRicovero(theView.getTxtDataRicovero().getText());
-								paziente.setDataRilascio(theView.getTxtDataRilascio().getText());
-								paziente.setSalone(theView.getTxtSalone().getText());
-								paziente.setDottore(theView.getTxtDottore().getText());
-								paziente.setStatoPaziente(theView.getLblStatoPaziente().getText());
+						for (Patient patient : theModel.getListaPazienti()) {
+							if(theView.getList().getSelectedValue().getName().equals(patient.getName()) &&
+									theView.getList().getSelectedValue().getLastName().equals(patient.getLastName())) {
+								patient.setHealthId(theView.getTxtCodiceUnicoSanitario().getText());
+								patient.setName(theView.getTxtNome().getText());
+								patient.setLastName(theView.getTxtCognome().getText());
+								patient.setBirthDate(theView.getTxtDataDiNascita().getText());
+								patient.setBirthPlace(theView.getTxtLuogoDiNascita().getText());
+								patient.setDiagnosis(theView.getTxtDiagnosi().getText());
+								patient.setHospDate(theView.getTxtDataRicovero().getText());
+								patient.setReleaseDate(theView.getTxtDataRilascio().getText());
+								patient.setRoom(theView.getTxtSalone().getText());
+								patient.setDoc(theView.getTxtDottore().getText());
+								patient.setPatientState(theView.getLblStatoPaziente().getText());
 								theModel.writeToFile(theModel.getListaPazienti());
 							}
 						}
@@ -514,7 +514,7 @@ public class MainFrameController {
 					}
 				}
 			} else {
-				JOptionPane.showMessageDialog(null, "Paziente non selezionato!");
+				JOptionPane.showMessageDialog(null, "Patient non selezionato!");
 			}
 		}
 	}
@@ -541,7 +541,7 @@ public class MainFrameController {
 					}
 				}
 			} else {
-				JOptionPane.showMessageDialog(null, "Paziente non selezionato!");
+				JOptionPane.showMessageDialog(null, "Patient non selezionato!");
 			}
 		}
 		
@@ -556,7 +556,7 @@ public class MainFrameController {
 				prescrizioneFrameController = new PrescrizioneFrameController(theModel, prescrizioneFrame, theView);
 				prescrizioneFrame.setVisible(true);
 			} else {
-				JOptionPane.showMessageDialog(null, "Paziente non selezionato!");
+				JOptionPane.showMessageDialog(null, "Patient non selezionato!");
 			}
 		}
 		
@@ -589,7 +589,7 @@ public class MainFrameController {
 					JOptionPane.showMessageDialog(null, "Il paziente selezionato non ha una PRESCRIZIONE MEDICA");
 				}
 			} else {
-				JOptionPane.showMessageDialog(null, "Paziente non selezionato!");
+				JOptionPane.showMessageDialog(null, "Patient non selezionato!");
 			}
 		}
 		
@@ -602,17 +602,17 @@ public class MainFrameController {
 			models.Date currentDate = new models.Date(Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.YEAR));
 			
 			if(theView.getList().getSelectedValue() != null) {			
-				for (Paziente paziente : theModel.getListaPazienti()) {
-					if(theView.getList().getSelectedValue().getCodiceUnivocoSanitario().equals(paziente.getCodiceUnivocoSanitario())) {
+				for (Patient patient : theModel.getListaPazienti()) {
+					if(theView.getList().getSelectedValue().getHealthId().equals(patient.getHealthId())) {
 						if(theView.getTxtDataRilascio().getText().equals(new String("-"))) {
-							paziente.setStatoPaziente(new String("RILASCIATO"));
+							patient.setPatientState(new String("RILASCIATO"));
 							theView.getLblStatoPaziente().setText(new String("RILASCIATO"));
 							theView.getLblStatoPaziente().setForeground(new Color(24, 158, 24));
 							theView.getTxtDataRilascio().setText(currentDate.toString());
-							paziente.setDataRilascio(theView.getTxtDataRilascio().getText());
+							patient.setReleaseDate(theView.getTxtDataRilascio().getText());
 							theModel.writeToFile(theModel.getListaPazienti());
-							theModel.removeObserver(paziente);
-							theModel.removeParametriVitali(paziente);
+							theModel.removeObserver(patient);
+							theModel.removeParametriVitali(patient);
 							theView.getTxtPressioneSistolica().setText("-");
 							theView.getTxtPressioneDiastolica().setText("-");
 							theView.getTxtFrequenzaCardiaca().setText("-");
@@ -621,13 +621,13 @@ public class MainFrameController {
 							theView.getBtnModificaDatiPrimario().setEnabled(false);
 							theView.getBtnVisualizzaPrescrizionePrimario().setEnabled(false);
 							theView.getBtnVisualizzaParametriVitaliPrimario().setEnabled(false);
-							theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(theView.getTodayDate()) + "]\tPaziente: " + paziente.getNome() + " " + paziente.getCognome() + "[Codice Fiscale: " + 
-								paziente.getCodiceUnivocoSanitario() + "] ? stato RILASCIATO!", theModel.getNewReportFile());
+							theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(theView.getTodayDate()) + "]\tPatient: " + patient.getName() + " " + patient.getLastName() + "[Codice Fiscale: " +
+								patient.getHealthId() + "] ? stato RILASCIATO!", theModel.getNewReportFile());
 						}
 					}
 				}
 			} else {
-				JOptionPane.showMessageDialog(null, "Paziente non selezionato!");
+				JOptionPane.showMessageDialog(null, "Patient non selezionato!");
 			}
 		}
 	}
@@ -638,8 +638,8 @@ public class MainFrameController {
 		public void actionPerformed(ActionEvent e) {
 			if(theView.getList().getSelectedValue() != null) {
 				parametriVitaliFrame.setVisible(true);
-				parametriVitaliFrame.getTxtNome().setText(theView.getList().getSelectedValue().getNome());
-				parametriVitaliFrame.getTxtCognome().setText(theView.getList().getSelectedValue().getCognome());
+				parametriVitaliFrame.getTxtNome().setText(theView.getList().getSelectedValue().getName());
+				parametriVitaliFrame.getTxtCognome().setText(theView.getList().getSelectedValue().getLastName());
 				
 				timer = new Timer();
 				timer.schedule(new TimerTask() {
@@ -647,48 +647,48 @@ public class MainFrameController {
 					@Override
 					public void run() {
 						for (Observer observer: theModel.getListaObserver()) {
-							if(observer.getNomeObserver().equals(theView.getList().getSelectedValue().getNome() + " " + theView.getList().getSelectedValue().getCognome())) {
+							if(observer.getObserverName().equals(theView.getList().getSelectedValue().getName() + " " + theView.getList().getSelectedValue().getLastName())) {
 								//pressione sistolica
-								if(observer.getPressioneSistolica() <= 90 || observer.getPressioneSistolica() >= 120) {
+								if(observer.getSysPressure() <= 90 || observer.getSysPressure() >= 120) {
 									parametriVitaliFrame.getTxtPressioneSistolica().setForeground(new Color(211, 11, 11));
-									parametriVitaliFrame.getTxtPressioneSistolica().setText(df.format(observer.getPressioneSistolica()).toString());
+									parametriVitaliFrame.getTxtPressioneSistolica().setText(df.format(observer.getSysPressure()).toString());
 								} else {
 									parametriVitaliFrame.getTxtPressioneSistolica().setForeground(new Color(24, 158, 24));
-									parametriVitaliFrame.getTxtPressioneSistolica().setText(df.format(observer.getPressioneSistolica()).toString());
+									parametriVitaliFrame.getTxtPressioneSistolica().setText(df.format(observer.getSysPressure()).toString());
 								}
 								
 								//pressione diastolica
-								if(observer.getPressioneDiastolica() <= 60 || observer.getPressioneDiastolica() >= 80) {
+								if(observer.getDiasPressure() <= 60 || observer.getDiasPressure() >= 80) {
 									parametriVitaliFrame.getTxtPressioneDiastolica().setForeground(new Color(211, 11, 11));
-									parametriVitaliFrame.getTxtPressioneDiastolica().setText(df.format(observer.getPressioneDiastolica()).toString());
+									parametriVitaliFrame.getTxtPressioneDiastolica().setText(df.format(observer.getDiasPressure()).toString());
 								} else {
 									parametriVitaliFrame.getTxtPressioneDiastolica().setForeground(new Color(24, 158, 24));
-									parametriVitaliFrame.getTxtPressioneDiastolica().setText(df.format(observer.getPressioneDiastolica()).toString());
+									parametriVitaliFrame.getTxtPressioneDiastolica().setText(df.format(observer.getDiasPressure()).toString());
 								}
 								
 								//frequenza cardiaca
-								if(observer.getFrequenzaCardiaca() <= 60 || observer.getFrequenzaCardiaca() >= 100) {
+								if(observer.getOxSaturation() <= 60 || observer.getOxSaturation() >= 100) {
 									parametriVitaliFrame.getTxtFrequenzaCardiaca().setForeground(new Color(211, 11, 11));
-									parametriVitaliFrame.getTxtFrequenzaCardiaca().setText(df.format(observer.getFrequenzaCardiaca()).toString());
+									parametriVitaliFrame.getTxtFrequenzaCardiaca().setText(df.format(observer.getOxSaturation()).toString());
 								} else {
 									parametriVitaliFrame.getTxtFrequenzaCardiaca().setForeground(new Color(24, 158, 24));
-									parametriVitaliFrame.getTxtFrequenzaCardiaca().setText(df.format(observer.getFrequenzaCardiaca()).toString());
+									parametriVitaliFrame.getTxtFrequenzaCardiaca().setText(df.format(observer.getOxSaturation()).toString());
 								}
 								
 								//temperatura corporea
-								if(observer.getTemperaturaCorporea() <= 36.5 || observer.getTemperaturaCorporea() >= 37.5) {
+								if(observer.getBodyTemp() <= 36.5 || observer.getBodyTemp() >= 37.5) {
 									parametriVitaliFrame.getTxtTemperaturaCorporea().setForeground(new Color(211, 11, 11));
-									parametriVitaliFrame.getTxtTemperaturaCorporea().setText(df.format(observer.getTemperaturaCorporea()).toString());
+									parametriVitaliFrame.getTxtTemperaturaCorporea().setText(df.format(observer.getBodyTemp()).toString());
 								} else {
 									parametriVitaliFrame.getTxtTemperaturaCorporea().setForeground(new Color(24, 158, 24));
-									parametriVitaliFrame.getTxtTemperaturaCorporea().setText(df.format(observer.getTemperaturaCorporea()).toString());
+									parametriVitaliFrame.getTxtTemperaturaCorporea().setText(df.format(observer.getBodyTemp()).toString());
 								}
 							}
 						}
 					}
 				}, 6000, 6000);
 			} else {
-				JOptionPane.showMessageDialog(null, "Paziente non selezionato!");
+				JOptionPane.showMessageDialog(null, "Patient non selezionato!");
 			}
 		}
 		

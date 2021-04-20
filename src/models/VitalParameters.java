@@ -1,17 +1,17 @@
 package models;
 
-public class ParametriVitali {
+public class VitalParameters {
 	private Double sysBloodPressure;
 	private Double diasPressure;
-	private Double heartRate;
+	private Double oxSaturation;
 	private Double bodyTemp;
 	private String dateAndTime;
 	
-	public ParametriVitali(Double sysBloodPressure, Double diasPressure, Double heartRate,
+	public VitalParameters(Double sysBloodPressure, Double diasPressure, Double oxSaturation,
 						   Double bodyTemp, String dateAndTime) {
 		this.sysBloodPressure = sysBloodPressure;
 		this.diasPressure = diasPressure;
-		this.heartRate = heartRate;
+		this.oxSaturation = oxSaturation;
 		this.bodyTemp = bodyTemp;
 		this.dateAndTime = dateAndTime;
 	}
@@ -32,12 +32,12 @@ public class ParametriVitali {
 		this.diasPressure = diasPressure;
 	}
 
-	public Double getHeartRate() {
-		return heartRate;
+	public Double getOxSaturation() {
+		return oxSaturation;
 	}
 
-	public void setHeartRate(Double heartRate) {
-		this.heartRate = heartRate;
+	public void setOxSaturation(Double oxSaturation) {
+		this.oxSaturation = oxSaturation;
 	}
 
 	public Double getBodyTemp() {

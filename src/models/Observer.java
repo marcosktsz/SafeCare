@@ -2,98 +2,95 @@ package models;
 
 public class Observer{
 
-	private String nomeObserver;
-	private Double pressioneSistolica;
-	private Double pressioneDiastolica;
-	private Double frequenzaCardiaca;
-	private Double temperaturaCorporea;
-	private Double sommaSBP = (double) 0;
-	private Double sommaDBP = (double) 0;
-	private Double sommaFC = (double) 0;
-	private Double sommaTC = (double) 0;
+	private String observerName;
+	private Double sysPressure;
+	private Double diasPressure;
+	private Double oxSaturation;
+	private Double bodyTemp;
+
+	private Double SBPSum = (double) 0;
+	private Double DBPSum = (double) 0;
+	private Double oxSum = (double) 0;
+	private Double btSum = (double) 0;
 	private Integer counterSBPeDBP = 0;
-	private Integer counterFC = 0;
-	private Integer counterTC = 0;
+	private Integer oxCounter = 0;
+	private Integer btCounter = 0;
 	
-	public Observer(String nomeObserver) {
-		this.nomeObserver = nomeObserver;
+	public Observer(String observerName) {
+		this.observerName = observerName;
 	}
 	
-	public String getNomeObserver() {
-		return nomeObserver;
+	public String getObserverName() {
+		return observerName;
 	}
 
-	public void setNomeObserver(String nomeObserver) {
-		this.nomeObserver = nomeObserver;
-		//print();
+	public void setObserverName(String observerName) {
+		this.observerName = observerName;
 	}
 
-	public Double getPressioneSistolica() {
-		return pressioneSistolica;
+	public Double getSysPressure() {
+		return sysPressure;
 	}
 
-	public void setPressioneSistolica(Double pressioneSistolica) {
-		this.pressioneSistolica = pressioneSistolica;
-		//print();
+	public void setSysPressure(Double sysPressure) {
+		this.sysPressure = sysPressure;
 	}
 
-	public Double getPressioneDiastolica() {
-		return pressioneDiastolica;
+	public Double getDiasPressure() {
+		return diasPressure;
 	}
 
-	public void setPressioneDiastolica(Double pressioneDiastolica) {
-		this.pressioneDiastolica = pressioneDiastolica;
-		//print();
+	public void setDiasPressure(Double diasPressure) {
+		this.diasPressure = diasPressure;
 	}
 
-	public Double getFrequenzaCardiaca() {
-		return frequenzaCardiaca;
+	public Double getOxSaturation() {
+		return oxSaturation;
 	}
 
-	public void setFrequenzaCardiaca(Double frequenzaCardiaca) {
-		this.frequenzaCardiaca = frequenzaCardiaca;
-		//print();
+	public void setOxSaturation(Double oxSaturation) {
+		this.oxSaturation = oxSaturation;
 	}
 		
 
-	public Double getTemperaturaCorporea() {
-		return temperaturaCorporea;
+	public Double getBodyTemp() {
+		return bodyTemp;
 	}
 
-	public void setTemperaturaCorporea(Double temperaturaCorporea) {
-		this.temperaturaCorporea = temperaturaCorporea;
+	public void setBodyTemp(Double bodyTemp) {
+		this.bodyTemp = bodyTemp;
 	}
 	
-	public Double getSommaSBP() {
-		return sommaSBP;
+	public Double getSBPSum() {
+		return SBPSum;
 	}
 
-	public void setSommaSBP(Double sommaSBP) {
-		this.sommaSBP = sommaSBP;
+	public void setSBPSum(Double SBPSum) {
+		this.SBPSum = SBPSum;
 	}
 
-	public Double getSommaDBP() {
-		return sommaDBP;
+	public Double getDBPSum() {
+		return DBPSum;
 	}
 
-	public void setSommaDBP(Double sommaDBP) {
-		this.sommaDBP = sommaDBP;
+	public void setDBPSum(Double DBPSum) {
+		this.DBPSum = DBPSum;
 	}
 
-	public Double getSommaFC() {
-		return sommaFC;
+	public Double getOxSum() {
+		return oxSum;
 	}
 
-	public void setSommaFC(Double sommaFC) {
-		this.sommaFC = sommaFC;
+	public void setOxSum(Double oxSum) {
+		this.oxSum = oxSum;
 	}
 
-	public Double getSommaTC() {
-		return sommaTC;
+	public Double getBtSum() {
+		return btSum;
 	}
 
-	public void setSommaTC(Double sommaTC) {
-		this.sommaTC = sommaTC;
+	public void setBtSum(Double btSum) {
+		this.btSum = btSum;
 	}
 	
 	public Integer getCounterSBPeDBP() {
@@ -104,25 +101,25 @@ public class Observer{
 		this.counterSBPeDBP = counterSBPeDBP;
 	}
 
-	public Integer getCounterFC() {
-		return counterFC;
+	public Integer getOxCounter() {
+		return oxCounter;
 	}
 
-	public void setCounterFC(Integer counterFC) {
-		this.counterFC = counterFC;
+	public void setOxCounter(Integer oxCounter) {
+		this.oxCounter = oxCounter;
 	}
 
-	public Integer getCounterTC() {
-		return counterTC;
+	public Integer getBtCounter() {
+		return btCounter;
 	}
 
-	public void setCounterTC(Integer counterTC) {
-		this.counterTC = counterTC;
+	public void setBtCounter(Integer btCounter) {
+		this.btCounter = btCounter;
 	}
 
 	public void print() {
-		System.out.println(nomeObserver + ":\n" + "[pressioneSistolica=" + pressioneSistolica
-				+ ", pressioneDiastolica=" + pressioneDiastolica + ", frequenzaCardiaca=" + frequenzaCardiaca
-				+ ", temperaturaCorporea=" + temperaturaCorporea + "]");
+		System.out.println(observerName + ":\n" + "[sysPressure=" + sysPressure
+				+ ", diasPressure=" + diasPressure + ", oxSaturation=" + oxSaturation
+				+ ", bodyTemp=" + bodyTemp + "]");
 	}
 }
