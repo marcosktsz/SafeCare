@@ -45,7 +45,7 @@
             </TextField>
             <Label layoutX="97.0" layoutY="264.0" text="Password">
                <font>
-                  <Font name="Google Sans Bold" size="20.0" />
+                  <Font name="Google Sans Regular" size="20.0" />
                </font>
             </Label>
             <TextField layoutX="202.0" layoutY="264.0" />
