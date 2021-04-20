@@ -4,13 +4,13 @@ package models;
 public class Subministration {
 	private String medId;
 	private Integer doseQuantity;
-	private String subDate;
+	private String notes;
 	private String nurseName;
 	
-	public Subministration(String medId, String subDate, Integer doseQuantity, String nurseName) {
+	public Subministration(String medId, String notes, Integer doseQuantity, String nurseName) {
 		this.medId = medId;
 		this.doseQuantity = doseQuantity;
-		this.subDate = subDate;
+		this.notes = notes;
 		this.nurseName = nurseName;
 	}
 
@@ -31,11 +31,11 @@ public class Subministration {
 	}
 
 	public String getTodayDate() {
-		return subDate;
+		return notes;
 	}
 
 	public void setTodayDate(String subDate) {
-		this.subDate = subDate;
+		this.notes = subDate;
 	}
 
 	public String getNurseName() {
@@ -48,7 +48,7 @@ public class Subministration {
 	
 	@Override
 	public String toString() {
-		return "\n\t\\tNome Farmaco utilizzato: " + medId + "\tQuantita dosi(in mg): " + doseQuantity + "\tData e ora: " + subDate + "\tNome Infermiere: " + nurseName;
+		return "\n\t\\tNome Farmaco utilizzato: " + medId + "\tQuantita dosi(in mg): " + doseQuantity + "\tData e ora: " + notes + "\tNome Infermiere: " + nurseName;
 	}
 	
 }

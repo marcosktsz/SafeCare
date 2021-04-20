@@ -119,7 +119,7 @@ public class Model {
 			org.json.JSONObject jsonObject = new org.json.JSONObject();
 			JSONArray jsonArray = new JSONArray();
 			for (ParametriVitali parametriVitali : src) {
-				jsonArray.add(parametriVitali);				
+				jsonArray.add(parametriVitali);
 			}
 			jsonObject.put("parametri vitali", jsonArray);
 			fileWriter.write(jsonObject.toString());

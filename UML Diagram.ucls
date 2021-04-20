@@ -37,7 +37,7 @@
       <operations public="false" package="false" protected="false" private="false" static="false"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="models.ParametriVitali" project="Progetto" 
+  <class id="5" language="java" name="models.ParametriVitali" project="Progetto"
     file="/Progetto/src/models/ParametriVitali.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="320" y="583"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

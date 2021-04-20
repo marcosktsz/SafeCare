@@ -18,15 +18,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import models.Nurse;
-import models.Doctor;
-import models.Model;
-import models.Observer;
-import models.ParametriVitali;
-import models.ParametriVitaliMedia;
-import models.Paziente;
-import models.Primario;
-import models.User;
+
+import models.*;
 import view.MainFrame;
 import view.NuovoPazienteFrame;
 import view.ParametriVitaliFrame;

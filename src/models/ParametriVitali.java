@@ -1,51 +1,51 @@
 package models;
 
 public class ParametriVitali {
-	private Double pressioneSistolica;
-	private Double pressioneDiastolica;
-	private Double frequenzaCardiaca;
-	private Double temperaturaCorporea;
+	private Double sysBloodPressure;
+	private Double diasPressure;
+	private Double heartRate;
+	private Double bodyTemp;
 	private String dateAndTime;
 	
-	public ParametriVitali(Double pressioneSistolica, Double pressioneDiastolica, Double frequenzaCardiaca,
-			Double temperaturaCorporea, String dateAndTime) {
-		this.pressioneSistolica = pressioneSistolica;
-		this.pressioneDiastolica = pressioneDiastolica;
-		this.frequenzaCardiaca = frequenzaCardiaca;
-		this.temperaturaCorporea = temperaturaCorporea;
+	public ParametriVitali(Double sysBloodPressure, Double diasPressure, Double heartRate,
+						   Double bodyTemp, String dateAndTime) {
+		this.sysBloodPressure = sysBloodPressure;
+		this.diasPressure = diasPressure;
+		this.heartRate = heartRate;
+		this.bodyTemp = bodyTemp;
 		this.dateAndTime = dateAndTime;
 	}
 
-	public Double getPressioneSistolica() {
-		return pressioneSistolica;
+	public Double getSysBloodPressure() {
+		return sysBloodPressure;
 	}
 
-	public void setPressioneSistolica(Double pressioneSistolica) {
-		this.pressioneSistolica = pressioneSistolica;
+	public void setSysBloodPressure(Double sysBloodPressure) {
+		this.sysBloodPressure = sysBloodPressure;
 	}
 
-	public Double getPressioneDiastolica() {
-		return pressioneDiastolica;
+	public Double getDiasPressure() {
+		return diasPressure;
 	}
 
-	public void setPressioneDiastolica(Double pressioneDiastolica) {
-		this.pressioneDiastolica = pressioneDiastolica;
+	public void setDiasPressure(Double diasPressure) {
+		this.diasPressure = diasPressure;
 	}
 
-	public Double getFrequenzaCardiaca() {
-		return frequenzaCardiaca;
+	public Double getHeartRate() {
+		return heartRate;
 	}
 
-	public void setFrequenzaCardiaca(Double frequenzaCardiaca) {
-		this.frequenzaCardiaca = frequenzaCardiaca;
+	public void setHeartRate(Double heartRate) {
+		this.heartRate = heartRate;
 	}
 
-	public Double getTemperaturaCorporea() {
-		return temperaturaCorporea;
+	public Double getBodyTemp() {
+		return bodyTemp;
 	}
 
-	public void setTemperaturaCorporea(Double temperaturaCorporea) {
-		this.temperaturaCorporea = temperaturaCorporea;
+	public void setBodyTemp(Double bodyTemp) {
+		this.bodyTemp = bodyTemp;
 	}
 
 	public String getDateAndTime() {

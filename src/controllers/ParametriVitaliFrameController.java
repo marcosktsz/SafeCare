@@ -6,11 +6,8 @@ import java.util.Date;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-import models.Model;
-import models.Observer;
-import models.ParametriVitali;
-import models.ParametriVitaliMedia;
-import models.Paziente;
+
+import models.*;
 import view.MainFrame;
 import view.ParametriVitaliFrame;
 

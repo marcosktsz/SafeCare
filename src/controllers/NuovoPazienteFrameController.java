@@ -9,11 +9,7 @@ import java.util.Calendar;
 
 import javax.swing.JOptionPane;
 
-import models.Model;
-import models.Observer;
-import models.ParametriVitali;
-import models.ParametriVitaliMedia;
-import models.Paziente;
+import models.*;
 import view.MainFrame;
 import view.NuovoPazienteFrame;
 
@@ -48,7 +44,7 @@ public class NuovoPazienteFrameController {
 							none, currentDate.toString(), none, "RICOVERATO");
 					for (Paziente paziente : theModel.getListaPazienti()) {
 						if(paziente.getCodiceUnivocoSanitario().equals(tmp.getCodiceUnivocoSanitario())) {
-							JOptionPane.showMessageDialog(null, "Paziente già esistente!");
+							JOptionPane.showMessageDialog(null, "Paziente giï¿½ esistente!");
 							verifica = true;
 						} else {
 							verifica = false;
@@ -62,7 +58,7 @@ public class NuovoPazienteFrameController {
 						theModel.getListaParametriVitali().put(tmp, new ArrayList<ParametriVitali>());
 						theModel.getListaParametriVitaliMedia().put(tmp, new ArrayList<ParametriVitaliMedia>());
 						theModel.appendToReportFile("\n[" + theModel.getDateFormat().format(mainFrame.getTodayDate()) + "]\tPaziente: " + tmp.getNome() + " " + tmp.getCognome() + "[Codice Fiscale: " + 
-								tmp.getCodiceUnivocoSanitario() + "] è stato RICOVERATO!", theModel.getNewReportFile());
+								tmp.getCodiceUnivocoSanitario() + "] ï¿½ stato RICOVERATO!", theModel.getNewReportFile());
 						theView.dispose();
 					}
 				} else {
