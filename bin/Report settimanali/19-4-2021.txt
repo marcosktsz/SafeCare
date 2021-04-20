@@ -30,3 +30,9 @@ REPORT SETTIMANALE dal 19/4/2021
 		Allarme in corso:
 			IPOTERMIA - Livello 2
 REPORT SETTIMANALE dal 19 4 2021
+
+
+[20/04/2021 10:01]	Paziente: Gloria Frittegotto[Codice Fiscale: FRTGLR65T44D121T]	 Medico: Elisabetta Perosino
+		Prescrizione Medica [17/02/2020]:[
+			Nome Farmaco: Tachipirina	Durata Terapia(gg): 5	Dosi Giornaliere: 2	Quantita dosi(mg): 1000, 
+			Nome Farmaco: Cortisone	Durata Terapia(gg): 3	Dosi Giornaliere: 1	Quantita dosi(mg): 5]
