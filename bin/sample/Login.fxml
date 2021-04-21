@@ -27,7 +27,12 @@
       </PasswordField>
       <JFXButton buttonType="RAISED" layoutX="68.0" layoutY="626.0" prefHeight="79.0" prefWidth="417.0" style="-fx-background-color: #65db73;" text="Login">
          <font>
-            <Font size="22.0" />
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="68.0" layoutY="626.0" prefHeight="79.0" prefWidth="417.0" style="-fx-background-color: #e87243;" text="Invalid credentials! Please try again.">
+         <font>
+            <Font size="18.0" />
          </font>
       </JFXButton>
    </children>
