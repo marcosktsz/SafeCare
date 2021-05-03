@@ -25,12 +25,12 @@
             <Font size="14.0" />
          </font>
       </PasswordField>
-      <JFXButton buttonType="RAISED" layoutX="68.0" layoutY="593.0" prefHeight="79.0" prefWidth="417.0" style="-fx-background-color: #65db73;" text="Login">
+      <JFXButton fx:id="LoginId" buttonType="RAISED" layoutX="68.0" layoutY="593.0" prefHeight="79.0" prefWidth="417.0" style="-fx-background-color: #65db73;" text="Login">
          <font>
             <Font size="22.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="139.0" layoutY="686.0" prefHeight="50.0" prefWidth="276.0" style="-fx-background-color: #d96f6f;" text="Register">
+      <JFXButton fx:id="RegisterId" buttonType="RAISED" layoutX="139.0" layoutY="686.0" prefHeight="50.0" prefWidth="276.0" style="-fx-background-color: #d96f6f;" text="Register">
          <font>
             <Font size="22.0" />
          </font>

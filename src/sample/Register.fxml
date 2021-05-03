@@ -8,6 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="757.0" prefWidth="553.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -16,22 +17,22 @@
             <Image url="@../../assets/safecare-register.png" />
          </image>
       </ImageView>
-      <TextField fx:id="UserField" layoutX="165.0" layoutY="487.0" prefHeight="38.0" prefWidth="223.0" promptText="Username">
+      <TextField fx:id="UserField" layoutX="42.0" layoutY="486.0" prefHeight="38.0" prefWidth="223.0" promptText="Username">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="PassField" layoutX="165.0" layoutY="550.0" prefHeight="38.0" prefWidth="223.0" promptText="Password">
+      <PasswordField fx:id="PassField" layoutX="42.0" layoutY="550.0" prefHeight="38.0" prefWidth="223.0" promptText="Password">
          <font>
             <Font size="14.0" />
          </font>
       </PasswordField>
-      <TextField fx:id="UserField1" layoutX="165.0" layoutY="423.0" prefHeight="38.0" prefWidth="223.0" promptText="Last Name">
+      <TextField fx:id="UserField1" layoutX="42.0" layoutY="423.0" prefHeight="38.0" prefWidth="223.0" promptText="Last Name">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="UserField11" layoutX="165.0" layoutY="360.0" prefHeight="38.0" prefWidth="223.0" promptText="Name">
+      <TextField fx:id="UserField11" layoutX="42.0" layoutY="360.0" prefHeight="38.0" prefWidth="223.0" promptText="Name">
          <font>
             <Font size="14.0" />
          </font>
@@ -46,5 +47,10 @@
             <Font size="17.0" />
          </font>
       </JFXToggleButton>
+      <Text fill="#ff1515" layoutX="293.0" layoutY="510.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This username is already taken">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
