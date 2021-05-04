@@ -21,13 +21,21 @@ public class FXMLDocumentLogin implements Initializable {
     @FXML
     private TextField PassField;
     @FXML
+    private TextField UserField1;
+    @FXML
+    private TextField UserField11;
+    @FXML
     public void Save(MouseEvent mouseEvent) throws IOException {
         StringBuilder sb = new StringBuilder();
-        sb.append(UserField.getText().toString()+ "\n");
-        sb.append(PassField.getText().toString());
+        sb.append(UserField.getText().toString()+ " ");
+        sb.append(PassField.getText().toString()+ " ");
+        sb.append(UserField1.getText().toString()+" ");
+        sb.append(UserField11.getText().toString());
+        sb.append("\n");
 
-        File file = new File("SafeCare.txt");
-        FileWriter W = new FileWriter(file);
+
+        File file = new File("assets\\SafeCare.txt");
+        FileWriter W = new FileWriter(file, true);
         W.write(sb.toString());
         W.close();
 

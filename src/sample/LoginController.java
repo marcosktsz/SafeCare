@@ -29,7 +29,7 @@ public class LoginController{
     private void login(MouseEvent mouseEvent) throws IOException {
         BufferedReader br = null;
         try {
-            br = new BufferedReader(new FileReader("SafeCare.txt"));
+            br = new BufferedReader(new FileReader("assets\\SafeCare.txt"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -38,19 +38,18 @@ public class LoginController{
             while ((st = br.readLine()) != null) {
                 String[] splitted = st.split(" ");
                 if (UserField.getText().equals(splitted[0]) && PassField.getText().equals(splitted[1])) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setContentText("You're now logged in");
-                    alert.showAndWait();
-                    break;
+
+
+
+
+                    //   Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                  //  alert.setContentText("You're now logged in");
+                   // alert.showAndWait();
+                   // break;
                 }
             }
         }
     }
-
- //   public void login(MouseEvent mouseEvent) {
-//        System.out.println(UserField.getText());
-   // }
-
 
     public void Register(MouseEvent mouseEvent) {
         try {
