@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="813.0" fitWidth="553.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../assets/safecare-register.png" />
+            <Image url="@images/safecare-register.png" />
          </image>
       </ImageView>
       <TextField fx:id="UserField" layoutX="42.0" layoutY="486.0" prefHeight="38.0" prefWidth="223.0" promptText="Username1">

@@ -1,35 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21a336d5-b087-4b81-a127-e2d34783d758" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SafeCare.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/login/medical.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/MainMenuController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/NewPatient.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+    <list default="true" id="21a336d5-b087-4b81-a127-e2d34783d758" name="Default Changelist" comment="Spostato il file di login dentro assets e aggiunto il main menu">
       <change beforePath="$PROJECT_DIR$/.idea/libraries/jfoenix_9_0_10.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/jfoenix_9_0_10.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/MainFrame.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Progetto.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Progetto.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/SafeCare.txt" beforeDir="false" afterPath="$PROJECT_DIR$/SafeCare.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/login/material-icon-2155441_960_720.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/login/material-icon-2155441_960_720.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/login/sc.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/login/sc.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Means.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Means.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Patient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Patient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/VitalParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/VitalParameters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/FXMLDocumentLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/FXMLDocumentLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SafeCare.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SafeCare.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/MainMenu/safecare-main.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/images/safecare-main.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/login/material-icon-2155441_960_720.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/images/material-icon-2155441_960_720.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/login/medical.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/images/medical.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/login/sc.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/images/sc.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/images/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/safecare-register.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/images/safecare-register.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/safecarelog.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/images/safecarelog.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/safecarelogotext.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/images/safecarelogotext.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SafeCare/models/ChiefDoc.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SafeCare/models/ChiefDoc.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SafeCare/models/Date.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SafeCare/models/Date.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SafeCare/models/Doctor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SafeCare/models/Doctor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SafeCare/models/Means.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SafeCare/models/Means.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SafeCare/models/Medicine.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SafeCare/models/Medicine.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SafeCare/models/Nurse.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SafeCare/models/Nurse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SafeCare/models/Observer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SafeCare/models/Observer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SafeCare/models/Patient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SafeCare/models/Patient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SafeCare/models/Prescription.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SafeCare/models/Prescription.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SafeCare/models/Subministration.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SafeCare/models/Subministration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SafeCare/models/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SafeCare/models/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SafeCare/models/VitalParameters.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SafeCare/models/VitalParameters.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SafeCare/models/Workers.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SafeCare/models/Workers.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SafeCare/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SafeCare/module-info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SafeCare/sample/FXMLDocumentLogin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SafeCare/sample/FXMLDocumentLogin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SafeCare/sample/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SafeCare/sample/Login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SafeCare/sample/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SafeCare/sample/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SafeCare/sample/MainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SafeCare/sample/MainFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SafeCare/sample/MainMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SafeCare/sample/MainMenu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SafeCare/sample/MainMenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SafeCare/sample/MainMenuController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SafeCare/sample/NewPatient.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SafeCare/sample/NewPatient.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SafeCare/sample/Register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SafeCare/sample/Register.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/MainFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/MainMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/MainMenu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/NewPatient.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/NewPatient.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Register.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,6 +51,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1s7LOTFsj44jiwE5QuKo3ZAnKvm" />
+  <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -49,8 +63,12 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Downloads/jfoenix-9.0.10.jar" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -60,15 +78,28 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/sample/images" />
+      <recent name="$PROJECT_DIR$/src/sample" />
+      <recent name="$PROJECT_DIR$/assets" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunManager">
     <configuration name="sample.MainFrame" type="Application" factoryName="Application">
-      <option name="ALTERNATIVE_JRE_PATH" value="adopt-openjdk-16" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="15" />
       <option name="MAIN_CLASS_NAME" value="sample.MainFrame" />
       <module name="SafeCare" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

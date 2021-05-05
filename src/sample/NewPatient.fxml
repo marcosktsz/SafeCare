@@ -12,7 +12,7 @@
    <children>
       <ImageView fitHeight="97.0" fitWidth="90.0" layoutX="33.0" layoutY="34.0" pickOnBounds="true">
          <image>
-            <Image url="@../../assets/login/medical.png" />
+            <Image url="@images/medical.png" />
          </image>
          <cursor>
             <Cursor fx:constant="DEFAULT" />
