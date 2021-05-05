@@ -39,7 +39,7 @@ public class FXMLDocumentLogin implements Initializable {
         W.write(sb.toString());
         W.close();
 
-        //Occorre ora un modo per non far sovrascrivere il file e far stampare una riga sotto
+
 
     }
     @Override
